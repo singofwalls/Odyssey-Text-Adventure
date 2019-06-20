@@ -11,10 +11,10 @@ from core.display import Text
 from core.files import get_files
 from core.save import get_saves_path, save_to_file, load_from_file
 from core.tools import weighted_choice, cap_all_words
-from game_objects import LOCATIONS_LIST, WEAPONS_LIST, EVERYTHING_LIST, NPC, \
-    ambrosia, starting_health, treasure, cerastes, gold_ingot, spartae, \
-    bestiary, anthology, cook_book, cooked_meal, atlas, monks_dogs, dagger, \
-    grendel
+from game_objects import dict_to_attack, LOCATIONS_LIST, WEAPONS_LIST, EVERYTHING_LIST, all_attacks, NPC, \
+    ambrosia, starting_health, treasure, cerastes, gold_ingot, spartae, minotaur,\
+    bestiary, anthology, cook_book, finely_cooked_meal, cooked_meal, mead, atlas, monks_dogs, dagger, hrunting, \
+    hrothgars_gift, grendel, adamantine_blade \
 
 # TODO: Store lines out of screen past configurable char limit in variables
 
@@ -260,6 +260,11 @@ class GameSave(object):
         self.temp_cryptic = False
         self.camo = False
         self.camo_plus = False
+        self.orpheus = False
+        self.shield = False
+        self.wolf = False
+        self.fleece = False
+        self.sack = False
         self.sleep = 0
         self.path = [
             GameObject([Text("Game", color=input_color)],
@@ -1176,6 +1181,21 @@ class GameSave(object):
                                              color=weapon_color,
                                              tooltip=disarmed_weapon.gen_desc(),
                                              new_line=True)])
+                        elif "Sleep+" in attack.get_attributes():
+                            if target == "You":
+                                if not game_save.orpheus:
+                                    game_save.sleep = 10
+                                    self.add_event(
+                                        [Text("You have fallen into a deep sleep.",
+                                              new_line=True, color=prompt_color)])
+                                elif "Sleep+" in attack.get_attributes() and game_save.orpheus:
+                                    game_save.orpheus = False
+                                    self.add_event([Text(
+                                        "The music of Orpheus\\'s Lyre keeps you alert. Its effects have now worn off.",
+                                        new_line=True, color=prompt_color)])
+                        elif "Wolf" in attack.get_attributes():
+                            if target == "You":
+                                game_save.wolf = True
                         if target == "You":
                             self.set_health(stats)
                         else:
@@ -1259,6 +1279,14 @@ class GameSave(object):
             self.add_event([Text("YOU ARE DEAD", color=dead_color,
                                  font_name=dead_font,
                                  font_size=dead_font_size, new_line=True)])
+            time.sleep(2)
+
+            self.add_event([Text(
+                "You hear a crack.",
+                color=prompt_color, new_line=True)])
+
+            time.sleep(2)
+
             self.add_event([Text("YOU LIVE AGAIN", color=dead_color,
                                  new_line=True, font_size=dead_font_size,
                                  font_name=dead_font)])
@@ -1788,31 +1816,100 @@ def start(_get_input, update_textbox, _set_choices, mark_temporary,
                 # Game exit
                 break
 
+            if game_save.fleece:
+                if game_save.get_health()["Brute"] < 10000:
+                    game_save.get_health()["Brute"] += 200
+                if game_save.get_health()["Sharp"] < 10000:
+                    game_save.get_health()["Sharp"] += 200
+                if game_save.get_health()["Burn"] < 10000:
+                    game_save.get_health()["Burn"] += 200
+                if game_save.get_health()["Freeze"] < 10000:
+                    game_save.get_health()["Freeze"] += 200
+                if game_save.get_health()["Divine"] < 10000:
+                    game_save.get_health()["Divine"] += 300
+                if game_save.get_health()["Agility"] < 1000:
+                    game_save.get_health()["Agility"] += 50
+                game_save.update_stats_tooltip()
+
             if choice == "Pick-up":
                 if not multiattack:
                     multiattack = False
                     item = game_save.get_path()[-1]
-                    if game_save.get_path()[0].find_object(
-                            "Surroundings").get_attribute(
-                        "location").get_type() != "Town":
-                        success = True
-                    else:
-                        success, treasures = game_save.get_payment(1, False)
-                    if success:
-                        if "Spawn-Cerastes" in item.get_attribute(
-                                "Item").get_attributes():
-                            game_save.gen_npc(cerastes)
-                            add_event([Text("You pull a ", color=dead_color),
-                                       cerastes.get_word(),
-                                       Text("out of the sand.",
-                                            color=dead_color,
-                                            new_line=True)])
+
+                    too_heavy = False
+                    if "Heavy" in item.get_attribute(
+                                    "Item").get_attributes():
+                        too_heavy = game_save.get_health()["Brute"] < 10000
+                    if not too_heavy:
+                        if game_save.get_path()[0].find_object(
+                                "Surroundings").get_attribute(
+                                "location").get_type() != "Town":
+                            success = True
                         else:
-                            item.get_attribute("Item").reset_cooldowns()
-                            game_save.add_inv_item(item)  # Add to inventory
-                        game_save.remove_ground_item(item)  # Remove from ground
-                        game_save.remove_path_index(-1)  # Remove from Path
-                        choosing = False
+                            success, treasures = game_save.get_payment(1, False)
+                        if success:
+                            if "Spawn-Cerastes" in item.get_attribute(
+                                    "Item").get_attributes():
+                                game_save.gen_npc(cerastes)
+                                add_event([Text("You pull a ", color=dead_color),
+                                           cerastes.get_word(),
+                                           Text("out of the sand.",
+                                                color=dead_color,
+                                                new_line=True)])
+                            elif "Smite" in item.get_attribute(
+                                    "Item").get_attributes():
+                                add_event([Text(
+                                    "Zeus smote you with a lightning bolt.",
+                                    color=dead_color, new_line=True)])
+                                game_save.get_health()["Divine"] = 0
+                                if not game_save.check_egg():
+                                    break  # Died, break loop
+                            elif "Sack" in item.get_attribute("Item").get_attributes():
+                                game_save.sack = True
+                            elif "Head" in item.get_attribute("Item").get_attributes():
+                                if not game_save.sack:
+                                    add_event([Text(
+                                        "Medusa\'s eyes stare into your soul.",
+                                        color=dead_color, new_line=True)])
+                                    game_save.get_health()["Soul"] = 0
+                                    if not game_save.check_egg():
+                                        break  # Died, break loop
+                                else:
+                                    add_event([Text(
+                                        "You pick up the head with the Kibisis.",
+                                        color=prompt_color, new_line=True)])
+                                    item.get_attribute("Item").reset_cooldowns()
+                                    game_save.add_inv_item(item)  # Add to inventory
+                            elif "Shield" in item.get_attribute("Item").get_attributes():
+                                if not game_save.shield:
+                                    game_save.shield = True
+                                    game_save.get_health()["Brute"] += 100000
+                                    game_save.get_health()["Sharp"] += 100000
+                                    game_save.get_health()["Burn"] += 100000
+                                    game_save.get_health()["Agility"] -= 100
+                                    item.get_attribute("Item").reset_cooldowns()
+                                    game_save.add_inv_item(item)  # Add to inventory
+                                    game_save.update_stats_tooltip()
+                                else:
+                                    item.get_attribute("Item").reset_cooldowns()
+                                    game_save.add_inv_item(item)  # Add to inventory
+                            elif "Fleece" in item.get_attribute("Item").get_attributes():
+                                if not game_save.fleece:
+                                    game_save.fleece = True
+                                    item.get_attribute("Item").reset_cooldowns()
+                                    game_save.add_inv_item(item)  # Add to inventory
+                                else:
+                                    item.get_attribute("Item").reset_cooldowns()
+                                    game_save.add_inv_item(item)  # Add to inventory
+                            else:
+                                item.get_attribute("Item").reset_cooldowns()
+                                game_save.add_inv_item(item)  # Add to inventory
+                            game_save.remove_ground_item(item)  # Remove from ground
+                            game_save.remove_path_index(-1)  # Remove from Path
+                            choosing = False
+                    else:
+                        add_event([Text("The item is too heavy.",
+                                        color=prompt_color, new_line=True)])
                 else:
                     add_event([Text("You have not finished your attack.",
                                     color=prompt_color, new_line=True)])
@@ -1821,6 +1918,8 @@ def start(_get_input, update_textbox, _set_choices, mark_temporary,
                 multiattack = False
                 item = game_save.get_path()[-1]
                 item.get_attribute("Item").reset_cooldowns()
+                if "Fleece" in item.get_attribute("Item").get_attributes():
+                    game_save.fleece = False
                 game_save.add_ground_item(item)  # Add to ground
                 game_save.remove_inv_item(item)  # Remove from inventory
                 game_save.remove_path_index(-1)  # Remove from Path
@@ -1876,6 +1975,15 @@ def start(_get_input, update_textbox, _set_choices, mark_temporary,
                 npc = game_save.get_path()[-1].get_attribute(
                     "NPC")
                 if not multiattack:
+                    item = GameObject(
+                        [Text(hrunting.get_name(),
+                              color=weapon_color,
+                              tooltip=hrunting.gen_desc())],
+                        attributes={"Item": hrunting,
+                                    }, _actions=[GameAction("Drop")])
+                    game_save.add_inv_item(item)
+                    add_event([Text("Hrothgar gives you Hrunting on behalf of Unferth.",
+                                    color=prompt_color, new_line=True)])
                     add_event([npc.get_word(), Text(
                         "says, 'The holy Creator usward sent him, To West-Dane warriors, I ween, for to render ’Gainst Grendel’s grimness gracious assistance: I shall give to the good one gift-gems for courage.'",
                         color=prompt_color, new_line=True)])
@@ -1960,7 +2068,7 @@ def start(_get_input, update_textbox, _set_choices, mark_temporary,
                     taming = False
                     for _damage in _damages:
                         if _damages[_damage] > 0:
-                            if _damage == "Tame" or _damage == "Tame+":
+                            if _damage == "Tame" or _damage == "Tame+" or _damage == "Tame2+":
                                 taming = True
                     if not taming:
                         _npc.target = "You"
@@ -2015,10 +2123,18 @@ def start(_get_input, update_textbox, _set_choices, mark_temporary,
                         game_save.cryptic = True
                         game_save.temp_cryptic = False
                         game_save.rename_flowers()
+                    if "Orpheus" in attack.get_attributes():
+                        power = True
+                        game_save.orpheus = True
                     if "Calm" in attack.get_attributes():
                         power = True
                         _npc.target = None
                         _npc.aggressiveness /= 2
+                    if "Enrage" in attack.get_attributes():
+                        power = True
+                        _npc.target = None
+                        for _attack in _npc.attacks:
+                            _attack *= 2
                     if "Herbal" in attack.get_attributes():
                         if not game_save.cryptic:
                             game_save.temp_cryptic = True
@@ -2033,6 +2149,15 @@ def start(_get_input, update_textbox, _set_choices, mark_temporary,
                     if "Camo+" in attack.get_attributes():
                         power = True
                         game_save.camo_plus = True
+                    if "Trumpet" in attack.get_attributes():
+                        power = True
+                        npc_word_list = game_save.gen_npcs(
+                            True)  # Allow for wandering monsters
+                        for npc_word in npc_word_list:
+                        #   if not isinstance(npc_word, type(None)):
+                            add_event([npc_word, Text("wandered into the vicinity at the call of the trumpet.",
+                                                            new_line=True,
+                                                            color=treasure_color)])
                     if "Atlas" in attack.get_attributes():
                         location_choices = []
                         probabilities = [l.probability for l in LOCATIONS_LIST]
@@ -2050,10 +2175,14 @@ def start(_get_input, update_textbox, _set_choices, mark_temporary,
                                            location_choices))))
                         game_save.gen_location(choice)
                         display_location()
-                    if "Sleep" in attack.get_attributes():
+                    if "Sleep" in attack.get_attributes() and not game_save.orpheus:
                         game_save.sleep = 5
                         power = True
                         add_event([Text("You have fallen asleep.",
+                                        new_line=True, color=prompt_color)])
+                    elif "Sleep" in attack.get_attributes() and game_save.orpheus:
+                        game_save.orpheus = False
+                        add_event([Text("The music of Orpheus\\'s Lyre keeps you alert. Its effects have now worn off.",
                                         new_line=True, color=prompt_color)])
                     if "Omphalos" in attack.get_attributes():
                         game_save.gen_location("Olympus")
@@ -2065,6 +2194,7 @@ def start(_get_input, update_textbox, _set_choices, mark_temporary,
                         game_save.gen_location("Labyrinth")
                         display_location()
                     if "Chains" in attack.get_attributes():
+                        power = True
                         if "Chained" not in _npc.get_attributes():
                             _npc.add_attribute("Chained", True)
                             add_event([Text("Unbreakable chains wrap around them "
@@ -2072,12 +2202,28 @@ def start(_get_input, update_textbox, _set_choices, mark_temporary,
                                             color=prompt_color)])
                             if "Fox" in _npc.get_attributes():
                                 _npc.set_health(starting_health)
-                    if "Sleep+" in attack.get_attributes():
+                    if "Sleep+" in attack.get_attributes() and not game_save.orpheus:
                         game_save.sleep = 10
                         power = True
                         add_event(
                             [Text("You have fallen into a deep sleep.",
                                   new_line=True, color=prompt_color)])
+                    if "Rod" in attack.get_attributes():
+                        if game_save.get_health()["Brute"] < 3000:
+                            game_save.get_health()["Brute"] += 100
+                        if game_save.get_health()["Sharp"] < 2000:
+                            game_save.get_health()["Sharp"] += 100
+                        if game_save.get_health()["Burn"] < 1000:
+                            game_save.get_health()["Burn"] += 100
+                        if game_save.get_health()["Freeze"] < 1500:
+                            game_save.get_health()["Freeze"] += 100
+                        if game_save.get_health()["Agility"] < 400:
+                            game_save.get_health()["Agility"] += 50
+                        game_save.update_stats_tooltip()
+                    elif "Sleep+" in attack.get_attributes() and game_save.orpheus:
+                        game_save.orpheus = False
+                        add_event([Text("The music of Orpheus\\'s Lyre keeps you alert. Its effects have now worn off.",
+                                        new_line=True, color=prompt_color)])
                     if "Spawn-Weapon" in attack.get_attributes():
                         power = True
                         random_weapon = random.choice(WEAPONS_LIST)
@@ -2090,7 +2236,23 @@ def start(_get_input, update_textbox, _set_choices, mark_temporary,
                             }, _actions=[GameAction("Pick-Up")])
                         game_save.add_ground_item(random_weapon)
                         game_save.rename_flowers()
+                 #   if "Spawn-Attack" in attack.get_attributes():
+                  #      power = True
+                   #     random_attack = dict_to_attack(random.choice(all_attacks))
+                    #    game_save.get_character().add_attacks(
+                     #       random_attack)
                     if "Spawn-Finely-Cooked-Meal" in attack.get_attributes():
+                        power = True
+                        item = GameObject(
+                            [Text(finely_cooked_meal.get_name(),
+                                  color=weapon_color,
+                                  tooltip=finely_cooked_meal.gen_desc())],
+                            attributes={"Item": finely_cooked_meal,
+                                        }, _actions=[GameAction("Drop")])
+                        game_save.add_inv_item(item)
+                        add_event([Text("You created a finely cooked meal.",
+                                        color=prompt_color, new_line=True)])
+                    if "Spawn-Meal" in attack.get_attributes():
                         power = True
                         item = GameObject(
                             [Text(cooked_meal.get_name(),
@@ -2099,7 +2261,19 @@ def start(_get_input, update_textbox, _set_choices, mark_temporary,
                             attributes={"Item": cooked_meal,
                                         }, _actions=[GameAction("Drop")])
                         game_save.add_inv_item(item)
-                        add_event([Text("You created a finely cooked meal.",
+                        add_event([Text("You created a cooked meal.",
+                                        color=prompt_color, new_line=True)])
+                    if "Spawn-Mead2" in attack.get_attributes():
+                        power = True
+                        item = GameObject(
+                            [Text(mead.get_name(),
+                                  color=weapon_color,
+                                  tooltip=mead.gen_desc())],
+                            attributes={"Item": mead,
+                                        }, _actions=[GameAction("Drop")])
+                        game_save.add_inv_item(item)
+                        game_save.add_inv_item(item)
+                        add_event([Text("You obtained some mead.",
                                         color=prompt_color, new_line=True)])
                     if "Spawn-Dagger" in attack.get_attributes():
                         power = True
@@ -2142,6 +2316,9 @@ def start(_get_input, update_textbox, _set_choices, mark_temporary,
                     if "Spawn-Spartae" in attack.get_attributes():
                         power = True
                         game_save.gen_npc(spartae)
+                    if "Cow" in attack.get_attributes():
+                        power = True
+                        game_save.gen_npc(minotaur)
                     if "Self" in attack.get_attributes():
                         power = True
 
@@ -2175,6 +2352,25 @@ def start(_get_input, update_textbox, _set_choices, mark_temporary,
                             game_save.get_health()["Divine"] = 0
                             if not game_save.check_egg():
                                 break  # Died, break loop
+                        if "Grendel" in _npc.attributes and not tame:
+                            item = GameObject(
+                                [Text(hrothgars_gift.get_name(),
+                                      color=weapon_color,
+                                      tooltip=hrothgars_gift.gen_desc())],
+                                attributes={"Item": hrothgars_gift,
+                                            }, _actions=[GameAction("Drop")])
+                            game_save.add_inv_item(item)
+                            add_event([Text(
+                                "Hrothgar is pleased. He presents you with a beautiful blade.",
+                                color=prompt_color, new_line=True)])
+                        if "Ophiotaurus" in _npc.attributes and not tame and _npc.get_health()["Burn"] <= 0:
+                            item = GameObject(
+                                [Text(adamantine_blade.get_name(),
+                                      color=weapon_color,
+                                      tooltip=adamantine_blade.gen_desc())],
+                                attributes={"Item": adamantine_blade,
+                                            }, _actions=[GameAction("Drop")])
+                            game_save.add_inv_item(item)
                         for weapon in game_save.get_path()[0].find_object(
                                 "Surroundings").get_objects()[
                             npc_num].get_objects():
@@ -2274,7 +2470,7 @@ def start(_get_input, update_textbox, _set_choices, mark_temporary,
     save_to_file(game_save, game_save.name + "." + extension)
 
     # TODO: 'AOE' att on attacks: Area of effect
-    # TODO: Only allow "Combat" att to heal in combat
+    # TODO: Only allow "Combat" att to heal in combat |||READ: I changed it so that the rod can only heal when below starting health. This todo is now irrelevant.X
     # TODO: Display worn items ('Worn' Attribute)
     # TODO: Buy with treasure at towns
     # TODO: Read/Write stories with book

@@ -280,10 +280,10 @@ class NPC(object):
     def check_if_dead(self):
         dead_healths = []
         for stat in self.get_health():
-            if self.get_health()[stat] <= 0 and stat != "Agility":
+            if self.get_health()[stat] <= 0 and stat != "Agility" and stat != "Charisma":
                 dead_healths.append(stat)
         return len(dead_healths) > 0, \
-               ("Tame" in dead_healths or "Tame+" in dead_healths), \
+               ("Tame" in dead_healths or "Tame+" in dead_healths or "Tame2+"), \
                ("Life" in dead_healths or "Soul" in dead_healths)
 
 
@@ -862,10 +862,16 @@ anthology = dict_to_weapon(list_to_dict(all_weapons)["Herbal-Anthology"])
 cook_book = dict_to_weapon(list_to_dict(all_weapons)["Cook-Book"])
 dagger = dict_to_weapon(list_to_dict(all_weapons)["Dagger"])
 atlas = dict_to_weapon(list_to_dict(all_weapons)["Atlas"])
-cooked_meal = dict_to_weapon(list_to_dict(all_weapons)["Finely-Cooked-Meal"])
+cooked_meal = dict_to_weapon(list_to_dict(all_weapons)["Cooked-Meal"])
+hrunting = dict_to_weapon(list_to_dict(all_weapons)["Hrunting"])
+hrothgars_gift = dict_to_weapon(list_to_dict(all_weapons)["Hrothgar's-Gift"])
+finely_cooked_meal = dict_to_weapon(list_to_dict(all_weapons)["Finely-Cooked-Meal"])
+mead = dict_to_weapon(list_to_dict(all_weapons)["Mead"])
 gold_ingot = dict_to_weapon(list_to_dict(all_weapons)["Gold-Ingot"])
+adamantine_blade = dict_to_weapon(list_to_dict(all_weapons)["Adamantine-Blade"])
 cerastes = dict_to_npc(list_to_dict(all_npcs)["Cerastes"])
 spartae = dict_to_npc(list_to_dict(all_npcs)["Spartae"])
+minotaur = dict_to_npc(list_to_dict(all_npcs)["Minotaur"])
 monks_dogs = dict_to_npc(list_to_dict(all_npcs)["Monk\'s-Dog"])
 grendel = dict_to_npc(list_to_dict(all_npcs)["Grendel"])
 

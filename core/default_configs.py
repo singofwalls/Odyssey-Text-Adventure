@@ -58,7 +58,7 @@ customization = \
         'path_font_size': 18, \n\
         'path_font': '(monospace)', \n\
         'choice_font': '(corbel, monospace)', \n\
-        'choice_font_size': 25, \n\
+        'choice_font_size': 40, \n\
         'border_size': 1, \n\
     }"
 
@@ -539,10 +539,10 @@ game_objects = \
                                 'Choice Probability': 100, \n\
                                 'Hit Probability': 100, \n\
                                 'Cooldown': 2, \n\
-                                'Damages': {'Brute': -1000, 'Sharp': -1000, 'Burn': -1000, 'Freeze': -1000}, \n\
-                                'Effect Probabilities': {'Brute': 100, 'Sharp': 100, 'Burn': 100, 'Freeze': 100}, \n\
-                                'Effectiveness': {'Brute': 10, 'Sharp': 10, 'Burn': 10, 'Freeze': 10}, \n\
-                                'Attributes': {'Self': True, 'Combat': True}, \n\
+                                'Damages': {}, \n\
+                                'Effect Probabilities': {}, \n\
+                                'Effectiveness': {}, \n\
+                                'Attributes': {'Self': True, 'Rod': True}, \n\
                             }, \n\
                         ], \n\
                     'Attributes': {}, \n\
@@ -697,8 +697,8 @@ game_objects = \
                                 'Cooldown': 2, \n\
                                 'Damages': {'Brute': 2000, 'Sharp': 2000, 'Burn': 1000, 'Freeze': 1200}, \n\
                                 'Effect Probabilities': {'Brute': 100, 'Sharp': 100, 'Burn': 100, 'Freeze': 100}, \n\
-                                'Effectiveness': {'Brute': -10, 'Sharp': -10, 'Burn': -10, 'Freeze': -10}, \n\
-                                'Attributes': {'Cooldown': True, 'Self': True}, \n\
+                                'Effectiveness': {'Brute': 10, 'Sharp': 10, 'Burn': 10, 'Freeze': 10}, \n\
+                                'Attributes': {'Cooldown': True, 'Self': True, 'Rota': True}, \n\
                             }, \n\
                         ], \n\
                     'Attributes': {}, \n\
@@ -744,7 +744,7 @@ game_objects = \
                                 'Choice Probability': 100, \n\
                                 'Hit Probability': 100, \n\
                                 'Cooldown': 0, \n\
-                                'Damages': {'Brute': -1000, 'Freeze': -800}, \n\
+                                'Damages': {'Brute': -900, 'Freeze': -1000}, \n\
                                 'Effect Probabilities': {'Brute': 100, 'Freeze': 100}, \n\
                                 'Effectiveness': {'Brute': 10, 'Freeze': 10}, \n\
                                 'Attributes': {'Consumable': True, 'Self': True, 'Mead': True}, \n\
@@ -763,7 +763,7 @@ game_objects = \
                                 'Choice Probability': 100, \n\
                                 'Hit Probability': 100, \n\
                                 'Cooldown': 0, \n\
-                                'Damages': {'Brute': -1500, 'Sharp': -1500, 'Burn': -1500, 'Freeze': -1500}, \n\
+                                'Damages': {'Brute': -1000, 'Sharp': -1000, 'Burn': -400, 'Freeze': -400}, \n\
                                 'Effect Probabilities': {'Brute': 100, 'Sharp': 100, 'Burn': 100, 'Freeze': 100}, \n\
                                 'Effectiveness': {'Brute': 10, 'Sharp': 10, 'Burn': 10, 'Freeze': 10}, \n\
                                 'Attributes': {'Consumable': True, 'Self': True, 'Mead': True}, \n\
@@ -782,7 +782,7 @@ game_objects = \
                                 'Choice Probability': 100, \n\
                                 'Hit Probability': 100, \n\
                                 'Cooldown': 0, \n\
-                                'Damages': {'Brute': -2000, 'Sharp': -2000, 'Burn': -2000, 'Freeze': -2000}, \n\
+                                'Damages': {'Brute': -1500, 'Sharp': -1500, 'Burn': -1000, 'Freeze': -1000}, \n\
                                 'Effect Probabilities': {'Brute': 100, 'Sharp': 100, 'Burn': 100, 'Freeze': 100}, \n\
                                 'Effectiveness': {'Brute': 50, 'Sharp': 50, 'Burn': 50, 'Freeze': 50}, \n\
                                 'Attributes': {'Consumable': True, 'Self': True}, \n\
@@ -894,7 +894,7 @@ game_objects = \
                     'Attacks': \n\
                         [ \n\
                         ], \n\
-                    'Attributes': {'Treasure': True, 'Names': ['Peacock-Feather', 'Encrusted-Goblet', 'Ruby-Pendant', 'Sapphire-Ring', 'Golden-Fleece', 'Silk-Tapestry', 'Cup-of-Apollo', 'Cup-of-Heracles', 'Gold-Coin', 'Orichalcum', 'Adamantine', 'Emerald', 'Gold-Horse-Figurine', 'Pearl-Necklace', 'Ruby', 'Saphire', 'Gold-Bracelet', 'Amethyst', 'Conch-Shell', 'Gold-Necklace', 'Garnet', 'Gold-Bridle', 'Ceremonial-Armor-Piece', 'Encrusted-Hilt', 'Apple-of-Discord', 'Golden-Apple', 'Marble-Bust', 'Jeweled-Figurine', 'Coin-Pouch', 'Jewel-Pouch', 'Encrusted-Jewelery-Box', 'Encrusted-Tome', 'Maplewood-Lyre', 'Ivory-Flute', 'Elaborate-Vase', 'Gilded-Dagger', 'Amarantos-Wreath', 'Gilded-Portrait', 'Pressed-Amarantos-Petal', 'Brand-of-Half-Dane', 'Golden-Banner', 'Adorned-Standard', 'Sword-of-Justice', 'Goblet', 'Gold-Crown', 'Encrusted-Skull', 'Silk-Banner', 'Silk-Quilt', 'Sea-Shell', 'Silk-Garments', 'Fancy-Garments', 'Jeweled-Scarab', 'Encrusted-Rock', 'Gold-Ring', 'Gold-Cutlery', 'Embossed-Brass-Dish']}, \n\
+                    'Attributes': {'Treasure': True, 'Names': ['Peacock-Feather', 'Encrusted-Goblet', 'Ruby-Pendant', 'Sapphire-Ring', 'Silk-Tapestry', 'Cup-of-Apollo', 'Cup-of-Heracles', 'Gold-Coin', 'Orichalcum', 'Adamantine', 'Emerald', 'Gold-Horse-Figurine', 'Pearl-Necklace', 'Ruby', 'Saphire', 'Gold-Bracelet', 'Amethyst', 'Conch-Shell', 'Gold-Necklace', 'Garnet', 'Gold-Bridle', 'Ceremonial-Armor-Piece', 'Encrusted-Hilt', 'Apple-of-Discord', 'Golden-Apple', 'Marble-Bust', 'Jeweled-Figurine', 'Coin-Pouch', 'Jewel-Pouch', 'Encrusted-Jewelery-Box', 'Encrusted-Tome', 'Maplewood-Lyre', 'Ivory-Flute', 'Elaborate-Vase', 'Gilded-Dagger', 'Amarantos-Wreath', 'Gilded-Portrait', 'Pressed-Amarantos-Petal', 'Brand-of-Half-Dane', 'Golden-Banner', 'Adorned-Standard', 'Sword-of-Justice', 'Goblet', 'Gold-Crown', 'Encrusted-Skull', 'Silk-Banner', 'Silk-Quilt', 'Sea-Shell', 'Silk-Garments', 'Fancy-Garments', 'Jeweled-Scarab', 'Encrusted-Rock', 'Gold-Ring', 'Gold-Cutlery', 'Embossed-Brass-Dish']}, \n\
                 }, \n\
                 { \n\
                     'Name': 'Journal', \n\
@@ -929,10 +929,10 @@ game_objects = \
                                 'Damages': {'Brute': 9000}, \n\
                                 'Effect Probabilities': {'Brute': 100}, \n\
                                 'Effectiveness': {'Brute': 60}, \n\
-                                'Attributes': {'Heavy': True, 'Thrown': True}, \n\
+                                'Attributes': { 'Thrown': True}, \n\
                             }, \n\
                         ], \n\
-                    'Attributes': {}, \n\
+                    'Attributes': {'Heavy': True}, \n\
                 }, \n\
                 { \n\
                     'Name': 'Magic-Staff', \n\
@@ -1589,6 +1589,25 @@ game_objects = \
                     'Attributes': {}, \n\
                 }, \n\
                 { \n\
+                    'Name': 'Adamantine-Plough', \n\
+                    'Description': 'A large plough of slick, black adamant. Fit for a bull of great strength.', \n\
+                    'Attacks': \n\
+                        [ \n\
+                            { \n\
+                                'Name': 'Yoke', \n\
+                                'Past Tense': 'yoked', \n\
+                                'Choice Probability': 0, \n\
+                                'Hit Probability': 100, \n\
+                                'Cooldown': -1, \n\
+                                'Damages': {'Tame2+': 100}, \n\
+                                'Effect Probabilities': {'Tame2+': 100}, \n\
+                                'Effectiveness': {'Tame2+': 100}, \n\
+                                'Attributes': {'Cooldown': True, 'Tame2+': True}, \n\
+                            }, \n\
+                        ], \n\
+                    'Attributes': {}, \n\
+                }, \n\
+                { \n\
                     'Name': 'Spear-of-Ares', \n\
                     'Description': 'A flaming shaft with a dastardly point on one end.', \n\
                     'Attacks': \n\
@@ -1723,6 +1742,14 @@ game_objects = \
                             }, \n\
                         ], \n\
                     'Attributes': {'Flower': 'Shirt-of-Nessus'}, \n\
+                }, \n\
+                { \n\
+                    'Name': 'Golden-Fleece', \n\
+                    'Description': 'A silky fleece with threads of glistening gold. Its presence comforts you.', \n\
+                    'Attacks': \n\
+                        [ \n\
+                        ], \n\
+                    'Attributes': {'Fleece': True}, \n\
                 }, \n\
                 { \n\
                     'Name': 'Poseidon\\'s-Trident', \n\
@@ -2041,10 +2068,11 @@ game_objects = \
                               'Choice Probability': 0, \n\
                               'Hit Probability': 20, \n\
                               'Cooldown': 0, \n\
+                              'Ammo': 1, \n\
                               'Damages': {}, \n\
                               'Effect Probabilities': {}, \n\
                               'Effectiveness': {}, \n\
-                              'Attributes': {'Chains': True, 'Thrown': True}, \n\
+                              'Attributes': {'Chains': True}, \n\
                           }, \n\
                       ], \n\
                   'Attributes': {}, \n\
@@ -2137,8 +2165,8 @@ game_objects = \
                     'Attributes': {'Body': True}, \n\
                 }, \n\
                 { \n\
-                    'Name': 'Sword-of-Sacrilege', \n\
-                    'Description': 'A divine power pulses through the blade.', \n\
+                    'Name': 'Adamantine-Blade', \n\
+                    'Description': 'A divine power pulses through the slick, black, blade.', \n\
                     'Attacks': \n\
                         [ \n\
                              { \n\
@@ -2149,7 +2177,7 @@ game_objects = \
                                 'Cooldown': 0, \n\
                                 'Damages': {'Divine': 5000, 'Sharp': 1000}, \n\
                                 'Effect Probabilities': {'Divine': 100, 'Sharp': 60}, \n\
-                                'Effectiveness': {'Divine': 100, 'Sharp': 60}, \n\
+                                'Effectiveness': {'Divine': 10, 'Sharp': 60}, \n\
                                 'Attributes': {}, \n\
                             }, \n\
                         ], \n\
@@ -2521,6 +2549,44 @@ game_objects = \
                     'Attributes': {}, \n\
                 }, \n\
                 { \n\
+                    'Name': 'Compendium', \n\
+                    'Description': 'A heavy black, leather-bound book with a first symbol pressed into its front.', \n\
+                    'Attacks': \n\
+                        [ \n\
+                             { \n\
+                                'Name': 'Learn', \n\
+                                'Past Tense': 'learned skill for', \n\
+                                'Choice Probability': 0, \n\
+                                'Hit Probability': 100, \n\
+                                'Cooldown': 3, \n\
+                                'Damages': {}, \n\
+                                'Effect Probabilities': {}, \n\
+                                'Effectiveness': {}, \n\
+                                'Attributes': {'Cooldown': True, 'Self': True, 'Spawn-Attack': True}, \n\
+                            }, \n\
+                        ], \n\
+                    'Attributes': {}, \n\
+                }, \n\
+                { \n\
+                    'Name': 'Wooden-Cow', \n\
+                    'Description': 'A hollow, wooden cow. You could fit inside this.', \n\
+                    'Attacks': \n\
+                        [ \n\
+                             { \n\
+                                'Name': 'Display', \n\
+                                'Past Tense': 'presented', \n\
+                                'Choice Probability': 0, \n\
+                                'Hit Probability': 100, \n\
+                                'Cooldown': 0, \n\
+                                'Damages': {}, \n\
+                                'Effect Probabilities': {}, \n\
+                                'Effectiveness': {}, \n\
+                                'Attributes': {'Self': True, 'Consumable': True, 'Cow': True}, \n\
+                            }, \n\
+                        ], \n\
+                    'Attributes': {}, \n\
+                }, \n\
+                { \n\
                     'Name': 'Dagger-Bag', \n\
                     'Description': 'A rolled leather strap lined with three daggers.', \n\
                     'Attacks': \n\
@@ -2589,10 +2655,10 @@ game_objects = \
                                 'Choice Probability': 0, \n\
                                 'Hit Probability': 100, \n\
                                 'Cooldown': 0, \n\
-                                'Damages': {'Focus': -1}, \n\
-                                'Effect Probabilities': {'Focus': -100}, \n\
-                                'Effectiveness': {'Focus': -100}, \n\
-                                'Attributes': {'Self': True}, \n\
+                                'Damages': {}, \n\
+                                'Effect Probabilities': {}, \n\
+                                'Effectiveness': {}, \n\
+                                'Attributes': {'Self': True, 'Orpheus': True}, \n\
                             }, \n\
                         ], \n\
                     'Attributes': {}, \n\
@@ -2965,7 +3031,7 @@ game_objects = \
                     'Name': 'Calydonian-Boar', \n\
                     'Description': 'A monstrous boar. It towers even above the tallest trees.', \n\
                     'Health': {'Brute': 10000, 'Sharp': 6000, 'Burn': 6000, 'Freeze': 8000, 'Tame': 10000, 'Agility': 150}, \n\
-                    'Aggressiveness': 100, \n\
+                    'Aggressiveness': 0, \n\
                     'Weapons': \n\
                         [ \n\
                             { \n\
@@ -3304,11 +3370,11 @@ game_objects = \
                                             'Name': 'Rend', \n\
                                             'Past Tense': 'rent', \n\
                                             'Choice Probability': 20, \n\
-                                            'Hit Probability': 70, \n\
+                                            'Hit Probability': 90, \n\
                                             'Cooldown': 2, \n\
                                             'Damages': {'Sharp': 2000}, \n\
                                             'Effect Probabilities': {'Sharp': 100}, \n\
-                                            'Effectiveness': {'Sharp': 70}, \n\
+                                            'Effectiveness': {'Sharp': 100}, \n\
                                             'Attributes': {}, \n\
                                         }, \n\
                                     ], \n\
@@ -3412,11 +3478,11 @@ game_objects = \
                                             'Name': 'Rend', \n\
                                             'Past Tense': 'rent', \n\
                                             'Choice Probability': 20, \n\
-                                            'Hit Probability': 70, \n\
+                                            'Hit Probability': 90, \n\
                                             'Cooldown': 2, \n\
                                             'Damages': {'Sharp': 2000}, \n\
                                             'Effect Probabilities': {'Sharp': 100}, \n\
-                                            'Effectiveness': {'Sharp': 70}, \n\
+                                            'Effectiveness': {'Sharp': 100}, \n\
                                             'Attributes': {}, \n\
                                         }, \n\
                                     ], \n\
@@ -3468,11 +3534,11 @@ game_objects = \
                                             'Name': 'Rend', \n\
                                             'Past Tense': 'rent', \n\
                                             'Choice Probability': 20, \n\
-                                            'Hit Probability': 70, \n\
+                                            'Hit Probability': 90, \n\
                                             'Cooldown': 2, \n\
                                             'Damages': {'Sharp': 2000}, \n\
                                             'Effect Probabilities': {'Sharp': 100}, \n\
-                                            'Effectiveness': {'Sharp': 70}, \n\
+                                            'Effectiveness': {'Sharp': 100}, \n\
                                             'Attributes': {}, \n\
                                         }, \n\
                                     ], \n\
@@ -3523,11 +3589,11 @@ game_objects = \
                                             'Name': 'Rend', \n\
                                             'Past Tense': 'rent', \n\
                                             'Choice Probability': 20, \n\
-                                            'Hit Probability': 70, \n\
+                                            'Hit Probability': 90, \n\
                                             'Cooldown': 2, \n\
                                             'Damages': {'Sharp': 2000}, \n\
                                             'Effect Probabilities': {'Sharp': 100}, \n\
-                                            'Effectiveness': {'Sharp': 70}, \n\
+                                            'Effectiveness': {'Sharp': 100}, \n\
                                             'Attributes': {}, \n\
                                         }, \n\
                                     ], \n\
@@ -3588,7 +3654,7 @@ game_objects = \
                                 'Choice Probability': 100, \n\
                                 'Hit Probability': 100, \n\
                                 'Cooldown': -2, \n\
-                                'Damages': {'Sharp': 2500}, \n\
+                                'Damages': {'Sharp': 2000}, \n\
                                 'Effect Probabilities': {'Sharp': 100}, \n\
                                 'Effectiveness': {'Sharp': 80}, \n\
                                 'Attributes': {}, \n\
@@ -3807,7 +3873,7 @@ game_objects = \
                                 'Damages': {'Sharp': 400}, \n\
                                 'Effect Probabilities': {'Sharp': 100}, \n\
                                 'Effectiveness': {'Sharp': 80}, \n\
-                                'Attributes': {'Werewolf': True}, \n\
+                                'Attributes': {'Wolf': True}, \n\
                             }, \n\
                             { \n\
                                 'Name': 'Claw', \n\
@@ -3884,28 +3950,28 @@ game_objects = \
                             }, \n\
                             { \n\
                                 'Name': 'Aegis', \n\
-                                'Description': 'A huge, gilded, white shield belonging to the god of gods.', \n\
+                                'Description': 'A huge, gilded, white shield belonging to the god of gods. The head of a gorgon is mounted in its center.', \n\
                                 'Attacks': \n\
                                     [ \n\
                                          { \n\
-                                           'Name': 'Equip', \n\
-                                           'Past Tense': 'equipped', \n\
-                                           'Choice Probability': 0, \n\
-                                           'Hit Probability': 100, \n\
-                                           'Cooldown': 0, \n\
-                                           'Damages': {'Brute': -100000, 'Sharp': -100000, 'Burn': -100000, 'Agility': 100}, \n\
-                                           'Effect Probabilities': {'Brute': 100, 'Sharp': 100, 'Burn': 100, 'Agility': 100}, \n\
-                                           'Effectiveness': {'Brute': 100, 'Sharp': 100, 'Burn': 100, 'Agility': 100}, \n\
-                                           'Attributes': {'Consumable': True, 'Self': True, 'Worn': True}, \n\
-                                         }, \n\
+                                            'Name': 'Petrify', \n\
+                                            'Past Tense': 'petrified', \n\
+                                            'Choice Probability': 0, \n\
+                                            'Hit Probability': 25, \n\
+                                            'Cooldown': 0, \n\
+                                            'Damages': {'Soul': 1}, \n\
+                                            'Effect Probabilities': {'Soul': 100}, \n\
+                                            'Effectiveness': {'Soul': 100}, \n\
+                                            'Attributes': {'Cooldown': True}, \n\
+                                        }, \n\
                                     ], \n\
-                                'Attributes': {}, \n\
+                                'Attributes': {'Shield': True}, \n\
                             }, \n\
                         ], \n\
                     'Attacks': \n\
                         [ \n\
                         ], \n\
-                    'Attributes': {}, \n\
+                    'Attributes': {'Unique': True}, \n\
                 }, \n\
                 { \n\
                     'Name': 'Unicorn', \n\
@@ -4010,11 +4076,11 @@ game_objects = \
                                             'Name': 'Rend', \n\
                                             'Past Tense': 'rent', \n\
                                             'Choice Probability': 20, \n\
-                                            'Hit Probability': 70, \n\
+                                            'Hit Probability': 90, \n\
                                             'Cooldown': 2, \n\
                                             'Damages': {'Sharp': 1000}, \n\
                                             'Effect Probabilities': {'Sharp': 100}, \n\
-                                            'Effectiveness': {'Sharp': 90}, \n\
+                                            'Effectiveness': {'Sharp': 95}, \n\
                                             'Attributes': {}, \n\
                                         }, \n\
                                     ], \n\
@@ -4105,7 +4171,7 @@ game_objects = \
                 { \n\
                     'Name': 'Pegasus', \n\
                     'Description': 'A pure white, winged horse. Majestic and divine. Something about it seems oddly terrifying.', \n\
-                    'Health': {'Brute': 5000, 'Sharp': 3500, 'Burn': 3000, 'Freeze': 3500, 'Tame': 1000000, 'Divine': 1000, 'Tame+': 10, 'Agility': 400}, \n\
+                    'Health': {'Brute': 5000, 'Sharp': 3500, 'Burn': 3000, 'Freeze': 3500, 'Tame': 100000000, 'Divine': 1000, 'Tame+': 10, 'Agility': 400}, \n\
                     'Aggressiveness': 40, \n\
                     'Weapons': \n\
                         [ \n\
@@ -4196,14 +4262,14 @@ game_objects = \
                         [ \n\
                             { \n\
                                 'Name': 'Sing', \n\
-                                'Past Tense': 'sung to sleep', \n\
-                                'Choice Probability': 30, \n\
+                                'Past Tense': 'sang to', \n\
+                                'Choice Probability': 5, \n\
                                 'Hit Probability': 100, \n\
                                 'Cooldown': 5, \n\
-                                'Damages': {'Focus': 1}, \n\
-                                'Effect Probabilities': {'Focus': 100}, \n\
-                                'Effectiveness': {'Focus': 100}, \n\
-                                'Attributes': {}, \n\
+                                'Damages': {'Brute': -1}, \n\
+                                'Effect Probabilities': {'Brute': 100}, \n\
+                                'Effectiveness': {'Brute': 100}, \n\
+                                'Attributes': {'Sleep+': True}, \n\
                             }, \n\
                             { \n\
                                 'Name': 'Watch', \n\
@@ -4211,9 +4277,9 @@ game_objects = \
                                 'Choice Probability': 100, \n\
                                 'Hit Probability': 100, \n\
                                 'Cooldown': 0, \n\
-                                'Damages': {}, \n\
-                                'Effect Probabilities': {}, \n\
-                                'Effectiveness': {}, \n\
+                                'Damages': {'Brute': -1}, \n\
+                                'Effect Probabilities': {'Brute': 100}, \n\
+                                'Effectiveness': {'Brute': 100}, \n\
                                 'Attributes': {}, \n\
                             }, \n\
                         ], \n\
@@ -4340,13 +4406,13 @@ game_objects = \
                     'Name': 'Dragon', \n\
                     'Description': 'A huge, fire-breathing dragon.', \n\
                     'Health': {'Brute': 10000, 'Sharp': 9000, 'Burn': 100000, 'Freeze': 5000, 'Tame': 20000, 'Agility': 200}, \n\
-                    'Aggressiveness':100, \n\
+                    'Aggressiveness': 100, \n\
                     'Weapons': \n\
                         [ \n\
                             'Dragon\\'s-Teeth', \n\
                             { \n\
                                 'Name': 'Dragon-Claws', \n\
-                                'Description': 'A handful of wicked sharp claws of dragon.', \n\
+                                'Description': 'A handful of wicked-sharp claws of a dragon.', \n\
                                 'Attacks': \n\
                                     [ \n\
                                          { \n\
@@ -4448,7 +4514,6 @@ game_objects = \
                     'Aggressiveness':100, \n\
                     'Weapons': \n\
                         [ \n\
-                            'Hrothgar\\'s-Gift', \n\
                             { \n\
                                 'Name': 'Grendel\\'s-Arm', \n\
                                 'Description': '\\'Every nail, claw-scale and spur, every spike and welt on the hand of that heathen brute was like barbed steel.\\'', \n\
@@ -4458,11 +4523,11 @@ game_objects = \
                                             'Name': 'Eviscerate', \n\
                                             'Past Tense': 'eviscerated', \n\
                                             'Choice Probability': 0, \n\
-                                            'Hit Probability': 80, \n\
+                                            'Hit Probability': 25, \n\
                                             'Cooldown': 1, \n\
                                             'Damages': {'Sharp': 3000}, \n\
                                             'Effect Probabilities': {'Sharp': 100}, \n\
-                                            'Effectiveness': {'Sharp': 10}, \n\
+                                            'Effectiveness': {'Sharp': 100}, \n\
                                             'Attributes': {}, \n\
                                         }, \n\
                                         { \n\
@@ -4471,7 +4536,7 @@ game_objects = \
                                             'Choice Probability': 0, \n\
                                             'Hit Probability': 80, \n\
                                             'Cooldown': 1, \n\
-                                            'Damages': {'Brute': 2000}, \n\
+                                            'Damages': {'Brute': 3000}, \n\
                                             'Effect Probabilities': {'Brute': 100}, \n\
                                             'Effectiveness': {'Brute': 10}, \n\
                                             'Attributes': {}, \n\
@@ -4505,7 +4570,7 @@ game_objects = \
                                'Attributes': {}, \n\
                            }, \n\
                         ], \n\
-                    'Attributes': {'Team': ['All'], 'Unique': True}, \n\
+                    'Attributes': {'Team': ['All'], 'Unique': True, 'Grendel': True}, \n\
                 }, \n\
                 { \n\
                     'Name': 'Earth-Dragon', \n\
@@ -4630,7 +4695,7 @@ game_objects = \
                                             'Damages': {'Agility': -10000000}, \n\
                                             'Effect Probabilities': {'Agility': 100}, \n\
                                             'Effectiveness': {'Agility': 100}, \n\
-                                            'Attributes': {'Speed': True}, \n\
+                                            'Attributes': {'Speed': True, 'Consumable': True, 'Self': True, 'Worn': True}, \n\
                                         }, \n\
                                     ], \n\
                                 'Attributes': {'Body': True}, \n\
@@ -4662,7 +4727,7 @@ game_objects = \
                                             'Damages': {'Charisma': -1}, \n\
                                             'Effect Probabilities': {'Charisma': 100}, \n\
                                             'Effectiveness': {'Charisma': 100}, \n\
-                                            'Attributes': {}, \n\
+                                            'Attributes': {'Consumable': True, 'Self': True, 'Worn': True}, \n\
                                         }, \n\
                                     ], \n\
                                 'Attributes': {'Body': True}, \n\
@@ -4685,18 +4750,88 @@ game_objects = \
                     'Attributes': {'Unique': True, 'Team': ['Dog']}, \n\
                 }, \n\
                 { \n\
+                    'Name': 'Colchian-Dragon', \n\
+                    'Description': 'An ancient, monstrous serpent. Ever-wakeful, the serpent far surpasses in length and breadth a ship of fifty oars.', \n\
+                    'Health': {'Brute': 80000, 'Sharp': 70000, 'Burn': 1000000, 'Freeze': 40000, 'Divine': 4900, 'Tame': 100000000, 'Agility': 1000}, \n\
+                    'Aggressiveness': 0, \n\
+                    'Weapons': \n\
+                        [ \n\
+                            'Dragon\\'s-Teeth', \n\
+                            'Panacea', \n\
+                            'Water-of-Langia', \n\
+                            'Golden-Fleece', \n\
+                            { \n\
+                                'Name': 'Adamantine-Dragon-Claws', \n\
+                                'Description': 'A handful of wicked-sharp, adamantine claws of the deadliest of dragons.', \n\
+                                'Attacks': \n\
+                                    [ \n\
+                                         { \n\
+                                            'Name': 'Eviscerate', \n\
+                                            'Past Tense': 'eviscerated', \n\
+                                            'Choice Probability': 0, \n\
+                                            'Hit Probability': 80, \n\
+                                            'Cooldown': -2, \n\
+                                            'Damages': {'Sharp': 10000, 'Divine': 2000}, \n\
+                                            'Effect Probabilities': {'Sharp': 100, 'Divine': 100}, \n\
+                                            'Effectiveness': {'Sharp': 100, 'Divine': 90}, \n\
+                                            'Attributes': {}, \n\
+                                        }, \n\
+                                    ], \n\
+                                'Attributes': {'Body': True}, \n\
+                            }, \n\
+                        ], \n\
+                    'Attacks': \n\
+                        [ \n\
+                           { \n\
+                                'Name': 'Burn', \n\
+                                'Past Tense': 'incinerated', \n\
+                                'Choice Probability': 1, \n\
+                                'Hit Probability': 95, \n\
+                                'Cooldown': 5, \n\
+                                'Ammo': 0, \n\
+                                'Damages': {'Burn': 25000}, \n\
+                                'Effect Probabilities': {'Burn': 100}, \n\
+                                'Effectiveness': {'Burn': 10}, \n\
+                                'Attributes': {}, \n\
+                            }, \n\
+                            { \n\
+                                'Name': 'Bite', \n\
+                                'Past Tense': 'bit', \n\
+                                'Choice Probability': 100, \n\
+                                'Hit Probability': 70, \n\
+                                'Cooldown': 1, \n\
+                                'Damages': {'Sharp': 9000}, \n\
+                                'Effect Probabilities': {'Sharp': 100}, \n\
+                                'Effectiveness': {'Sharp': 80}, \n\
+                                'Attributes': {}, \n\
+                            }, \n\
+                            { \n\
+                                'Name': 'Claw', \n\
+                                'Past Tense': 'clawed', \n\
+                                'Choice Probability': 50, \n\
+                                'Hit Probability': 80, \n\
+                                'Cooldown': -1, \n\
+                                'Damages': {'Sharp': 6000}, \n\
+                                'Effect Probabilities': {'Sharp': 100}, \n\
+                                'Effectiveness': {'Sharp': 80}, \n\
+                                'Attributes': {}, \n\
+                            }, \n\
+                        ], \n\
+                    'Attributes': {'Unique': True, 'Team': ['Snake', 'Bull']}, \n\
+                }, \n\
+                { \n\
                     'Name': 'Nemean-Dragon', \n\
                     'Description': 'A monstrous serpent. A gold crest is proudly set into its chest.', \n\
                     'Health': {'Brute': 20000, 'Sharp': 19000, 'Burn': 50000, 'Freeze': 10000, 'Divine': 4000, 'Tame': 40000, 'Agility': 1000}, \n\
-                    'Aggressiveness':100, \n\
+                    'Aggressiveness': 0, \n\
                     'Weapons': \n\
                         [ \n\
                             'Dragon\\'s-Teeth', \n\
                             'Panacea', \n\
                             'Water-of-Langia', \n\
                             { \n\
-                                'Name': 'Dragon-Claws', \n\
-                                'Description': 'A handful of wicked sharp claws of dragon.', \n\
+                                'Name': 'Golden-Dragon-Claws', \n\
+                                'Description': 'A handful of wicked-sharp, golden claws of an ancient dragon.', \n\
                                 'Attacks': \n\
                                     [ \n\
                                          { \n\
@@ -4708,7 +4843,7 @@ game_objects = \
                                             'Ammo': 4, \n\
                                             'Damages': {'Sharp': 10000}, \n\
                                             'Effect Probabilities': {'Sharp': 100}, \n\
-                                            'Effectiveness': {'Sharp': 10}, \n\
+                                            'Effectiveness': {'Sharp': 98}, \n\
                                             'Attributes': {}, \n\
                                         }, \n\
                                     ], \n\
@@ -4903,11 +5038,10 @@ game_objects = \
                 { \n\
                     'Name': 'Ophiotaurus', \n\
                     'Description': 'Part bull, part serpent. It is believed that burning one grants the ability to slay gods.', \n\
-                    'Health': {'Brute': 10000, 'Sharp': 10000, 'Burn': 1000, 'Freeze': 10000, 'Tame': 10000, 'Agility': 300}, \n\
+                    'Health': {'Brute': 3000, 'Sharp': 2500, 'Burn': 1000, 'Freeze': 7000, 'Tame': 10000, 'Agility': 300}, \n\
                     'Aggressiveness':70, \n\
                     'Weapons': \n\
                         [ \n\
-                            'Sword-of-Sacrilege', \n\
                         ], \n\
                     'Attacks': \n\
                         [ \n\
@@ -4924,7 +5058,7 @@ game_objects = \
                                 'Attributes': {}, \n\
                             }, \n\
                         ], \n\
-                    'Attributes': {}, \n\
+                    'Attributes': {'Ophiotaurus': True}, \n\
                 }, \n\
                 { \n\
                     'Name': 'Catoblepas', \n\
@@ -5108,8 +5242,8 @@ game_objects = \
                                             'Hit Probability': 100, \n\
                                             'Cooldown': 2, \n\
                                             'Damages': {'Soul': 1}, \n\
-                                            'Effect Probabilities': {'Soul': 1}, \n\
-                                            'Effectiveness': {'Soul': 1}, \n\
+                                            'Effect Probabilities': {'Soul': 100}, \n\
+                                            'Effectiveness': {'Soul': 100}, \n\
                                             'Attributes': {'Cooldown': True}, \n\
                                         }, \n\
                                     ], \n\
@@ -5131,7 +5265,7 @@ game_objects = \
                                     'Attributes': {'Cooldown': True}, \n\
                                 }, \n\
                         ], \n\
-                    'Attributes': {'Unique': True, 'Team': ['All']}, \n\
+                    'Attributes': {'Unique': True, 'Team': ['All'], 'Medusa': True}, \n\
                 }, \n\
                 { \n\
                     'Name': 'Circe', \n\
@@ -5333,7 +5467,7 @@ game_objects = \
                     'Name': 'Nemean-Lion', \n\
                     'Description': 'A gigantic lion. Its coat has a strange sheen.', \n\
                     'Health': {'Brute': 10000000, 'Sharp': 10000000, 'Burn': 10000000, 'Freeze': 10000000, 'Toxin': 10000000, 'Focus': 10000000, 'Tame': 10000000, 'Divine': 100, 'Agility': 4000}, \n\
-                    'Aggressiveness': 100, \n\
+                    'Aggressiveness': 0, \n\
                     'Weapons': \n\
                         [ \n\
                             { \n\
@@ -5453,6 +5587,73 @@ game_objects = \
                             }, \n\
                         ], \n\
                     'Attributes': {'Unique': True}, \n\
+                }, \n\
+                { \n\
+                    'Name': 'Khalkotauroi', \n\
+                    'Description': 'An intimidating, fire-breathing bull of bronze. Forged by the gods.', \n\
+                    'Health': {'Brute': 40500, 'Sharp': 50000, 'Burn': 40000, 'Freeze': 30500, 'Divine': 4000, 'Tame': 100000000, 'Tame2+': 10,'Agility': 1000}, \n\
+                    'Aggressiveness': 0, \n\
+                    'Weapons': \n\
+                        [ \n\
+                            { \n\
+                                'Name': 'Brazen-Horn', \n\
+                                'Description': 'A jagged horn of bronze and adamantine. Hot to the touch.', \n\
+                                'Attacks': \n\
+                                    [ \n\
+                                        { \n\
+                                            'Name': 'Rend', \n\
+                                            'Past Tense': 'rent', \n\
+                                            'Choice Probability': 0, \n\
+                                            'Hit Probability': 100, \n\
+                                            'Cooldown': -1, \n\
+                                            'Damages': {'Sharp': 8000, 'Burn': 10000}, \n\
+                                            'Effect Probabilities': {'Sharp': 100, 'Burn': 90}, \n\
+                                            'Effectiveness': {'Sharp': 90, 'Burn': 50}, \n\
+                                            'Attributes': {}, \n\
+                                        }, \n\
+                                        { \n\
+                                            'Name': 'Impale', \n\
+                                            'Past Tense': 'impaled', \n\
+                                            'Choice Probability': 0, \n\
+                                            'Hit Probability': 100, \n\
+                                            'Cooldown': 0, \n\
+                                            'Ammo': 1, \n\
+                                            'Damages': {'Sharp': 10000, 'Burn': 10000, 'Divine': 10000}, \n\
+                                            'Effect Probabilities': {'Sharp': 100, 'Burn': 95, 'Divine': 100}, \n\
+                                            'Effectiveness': {'Sharp': 100, 'Burn': 100, 'Divine': 80}, \n\
+                                            'Attributes': {}, \n\
+                                        }, \n\
+                                    ], \n\
+                                'Attributes': {'Body': True}, \n\
+                            }, \n\
+                        ], \n\
+                    'Attacks': \n\
+                        [ \n\
+                            { \n\
+                                'Name': 'Charge', \n\
+                                'Past Tense': 'charged at', \n\
+                                'Choice Probability': 100, \n\
+                                'Hit Probability': 60, \n\
+                                'Cooldown': 2, \n\
+                                'Damages': {'Sharp': 8000, 'Brute': 1000}, \n\
+                                'Effect Probabilities': {'Sharp': 100, 'Brute': 90}, \n\
+                                'Effectiveness': {'Sharp': 80, 'Brute': 20}, \n\
+                                'Attributes': {}, \n\
+                            }, \n\
+                            { \n\
+                                'Name': 'Burn', \n\
+                                'Past Tense': 'incinerated', \n\
+                                'Choice Probability': 20, \n\
+                                'Hit Probability': 90, \n\
+                                'Cooldown': 1, \n\
+                                'Ammo': 0, \n\
+                                'Damages': {'Burn': 6000}, \n\
+                                'Effect Probabilities': {'Burn': 100}, \n\
+                                'Effectiveness': {'Burn': 100}, \n\
+                                'Attributes': {}, \n\
+                            }, \n\
+                        ], \n\
+                    'Attributes': {'Unique': True, 'Team': ['Bull']}, \n\
                 }, \n\
                 { \n\
                     'Name': 'Centaur', \n\
@@ -5762,6 +5963,7 @@ game_objects = \
                     'Weapons': \n\
                         [ \n\
                             'Athena\\'s-Bridle', \n\
+                            'Compendium', \n\
                             'Ichor', \n\
                         ], \n\
                     'Attacks': \n\
@@ -5789,6 +5991,7 @@ game_objects = \
                         [ \n\
                             'Hephaestus\\'s-Labrys', \n\
                             'Hammer-of-Hephaestus', \n\
+                            'Adamantine-Plough', \n\
                             'Ichor', \n\
                         ], \n\
                     'Attacks': \n\
@@ -6111,6 +6314,18 @@ game_objects = \
                     'Max': 1, \n\
                 }, \n\
                 { \n\
+                    'Name': 'Compendium', \n\
+                    'Probability': 0, \n\
+                    'Fraction': 0, \n\
+                    'Max': 0, \n\
+                }, \n\
+                { \n\
+                    'Name': 'Wooden-Cow', \n\
+                    'Probability': 10, \n\
+                    'Fraction': 0, \n\
+                    'Max': 1, \n\
+                }, \n\
+                { \n\
                     'Name': 'Brazen-Shield', \n\
                     'Probability': 20, \n\
                     'Fraction': 0, \n\
@@ -6184,13 +6399,13 @@ game_objects = \
                 }, \n\
                 { \n\
                     'Name': 'Miasma-Flower', \n\
-                    'Probability': .1, \n\
+                    'Probability': .2, \n\
                     'Fraction': 90, \n\
                     'Max': 1, \n\
                 }, \n\
                 { \n\
                     'Name': 'Panacea-Flower', \n\
-                    'Probability': .1, \n\
+                    'Probability': .2, \n\
                     'Fraction': 90, \n\
                     'Max': 1, \n\
                 }, \n\
@@ -6208,7 +6423,7 @@ game_objects = \
                 }, \n\
                 { \n\
                     'Name': 'Herb-of-Asklepios', \n\
-                    'Probability': .2, \n\
+                    'Probability': .3, \n\
                     'Fraction': 0, \n\
                     'Max': 1, \n\
                 }, \n\
@@ -6385,13 +6600,13 @@ game_objects = \
                             }, \n\
                              { \n\
                                 'Name': 'Siren', \n\
-                                'Probability': 1, \n\
+                                'Probability': 2, \n\
                                 'Fraction': 1.5, \n\
                                 'Max': 3, \n\
                             }, \n\
                              { \n\
                                 'Name': 'Pyrausta', \n\
-                                'Probability': 1, \n\
+                                'Probability': .5, \n\
                                 'Fraction': 1.5, \n\
                                 'Max': 3, \n\
                             }, \n\
@@ -6493,6 +6708,60 @@ game_objects = \
                              { \n\
                                 'Name': 'Nemean-Dragon', \n\
                                 'Probability': 10, \n\
+                                'Fraction': 0, \n\
+                                'Max': 1, \n\
+                            }, \n\
+                        ], \n\
+                    'Attributes': {}, \n\
+                }, \n\
+                { \n\
+                    'Name': 'Sacred-Grove', \n\
+                    'Description': 'A luscious island of exotic creatures.', \n\
+                    'Probability': .5, \n\
+                    'Treasure': {'Max': 4, 'Min': 1, 'Probability': 95}, \n\
+                    'Weapons': \n\
+                        [ \n\
+                            'Rock', \n\
+                            'Ambrosia', \n\
+                            'Herb-of-Kheiron', \n\
+                            'Peony', \n\
+                            'Herb-of-Asklepios', \n\
+                            'Manna-Flower', \n\
+                            'Narthex-Flower', \n\
+                            'Hyacinth', \n\
+                            'Amarantos-Flower', \n\
+                            'Ambrosia-Flower', \n\
+                            { \n\
+                                'Name': 'Omphalos', \n\
+                                'Probability': 100, \n\
+                                'Fraction': 20, \n\
+                                'Max': 0, \n\
+                            }, \n\
+                        ], \n\
+                    'NPCs': \n\
+                        [ \n\
+                             { \n\
+                                'Name': 'Serpent', \n\
+                                'Probability': 80, \n\
+                                'Fraction': 1.5, \n\
+                                'Max': 3, \n\
+                            }, \n\
+                            'Teumessian-Fox', \n\
+                             { \n\
+                                'Name': 'Nymph', \n\
+                                'Probability': 90, \n\
+                                'Fraction': 10, \n\
+                                'Max': 3, \n\
+                            }, \n\
+                             { \n\
+                                'Name': 'Khalkotauroi', \n\
+                                'Probability': 100, \n\
+                                'Fraction': .05, \n\
+                                'Max': 2, \n\
+                            }, \n\
+                             { \n\
+                                'Name': 'Colchian-Dragon', \n\
+                                'Probability': 100, \n\
                                 'Fraction': 0, \n\
                                 'Max': 1, \n\
                             }, \n\
@@ -6673,7 +6942,7 @@ game_objects = \
                             }, \n\
                              { \n\
                                 'Name': 'Amalthea', \n\
-                                'Probability': .5, \n\
+                                'Probability': .1, \n\
                                 'Fraction': 5, \n\
                                 'Max': 1, \n\
                             }, \n\
@@ -6918,7 +7187,7 @@ game_objects = \
                 { \n\
                     'Name': 'Labyrinth', \n\
                     'Description': 'A twisting maze as terrifying as it is incomprehensible.', \n\
-                    'Probability': 1, \n\
+                    'Probability': 2, \n\
                     'Treasure': {'Max': 1, 'Min': 0, 'Probability': 30}, \n\
                     'Weapons': \n\
                         [ \n\
@@ -6935,6 +7204,7 @@ game_objects = \
                             'Baetylus', \n\
                             'Omphalos', \n\
                             'Water-of-The-River-Styx', \n\
+                            'Wooden-Cow', \n\
                         ], \n\
                     'NPCs': \n\
                         [ \n\
@@ -7240,13 +7510,42 @@ game_objects = \
                     'Treasure': {'Max': 1, 'Min': 0, 'Probability': 10}, \n\
                     'Weapons': \n\
                         [ \n\
-                            'Ambrosia', \n\
-                            'Ambrosia', \n\
-                            'Ambrosia', \n\
-                            'Ambrosia', \n\
-                            'Ambrosia', \n\
-                            'Ambrosia', \n\
-                            'Panacea', \n\
+                            { \n\
+                                'Name': 'Ambrosia', \n\
+                                'Probability': 30, \n\
+                                'Fraction': 5, \n\
+                                'Max': 0, \n\
+                            }, \n\
+                            { \n\
+                                'Name': 'Ambrosia', \n\
+                                'Probability': 30, \n\
+                                'Fraction': 5, \n\
+                                'Max': 0, \n\
+                            }, \n\
+                            { \n\
+                                'Name': 'Ambrosia', \n\
+                                'Probability': 30, \n\
+                                'Fraction': 5, \n\
+                                'Max': 0, \n\
+                            }, \n\
+                            { \n\
+                                'Name': 'Ambrosia', \n\
+                                'Probability': 30, \n\
+                                'Fraction': 5, \n\
+                                'Max': 0, \n\
+                            }, \n\
+                            { \n\
+                                'Name': 'Ambrosia', \n\
+                                'Probability': 30, \n\
+                                'Fraction': 5, \n\
+                                'Max': 0, \n\
+                            }, \n\
+                            { \n\
+                                'Name': 'Ambrosia', \n\
+                                'Probability': 30, \n\
+                                'Fraction': 5, \n\
+                                'Max': 0, \n\
+                            }, \n\
                             'Bag-of-Wind', \n\
                         ], \n\
                     'NPCs': \n\
@@ -7329,21 +7628,23 @@ game_objects = \
                 'Treasure', \n\
             ], \n\
     }"
-# TODO: add hotkeys to switch between tabs of path
-# TODO: Hrunting given you by hrothgar when talked to "Hrothgar gives you a sword on behalf of Unferth"
+#TODO: Olympus is war zone of infinite gods and their duplicates
+
+# TODO: Figure out why thread ammo is universal to all thread
+# TODO: Only allowed to pay story tellers once
+
+#TODO: Make thread one use. Teles to laby. Laby is now a system. Leaving location within just regens the room. give 1/20 chance of escaping laby.
+#TODO: ^Same with olympus. (Eventually, same with underworld)
+
 # TODO: You team
-# TODO: Heavy attribute can't pick up unless you have above 10000 brute health
 # TODO: if don't have tame health, can't be tamed
 # TODO: Individual story tellers are unique (don't come back after death)
 # TODO: Spawn-Demon summons demon after 3 moves.
-# TODO: Spawn-mead2 spawns 2 mead.
-# TODO: Spawn-meal spawns cooked-meal.
 # TODO: Mark causes all creatures 100% aggro on target.
 # TODO: Reverse attribute negates all damages done to you
-# TODO: Picking up item with Smite attribute smites you *
 # TODO: Styx-Death attribute kills player and gives message: You could not withstand the pull of the dead.
 # TODO: Attributes: Styx-Brute, Styx-Sharp, Styx-Burn, Styx-Freeze, Styx-Soul, Styx-Life, Styx-Toxin, Styx-Focus, Styx-Divine, Styx-Mind cause attack to immediately reduce respective health to 1.
-# TODO: Werewolf attribute causes victim to (after 10 turns) be shown the message: "You feel yourself transforming!" and gain 300 agility. Also gain werewolf's attacks (as if tamed it). You now randomly transform in and out of werewolf form, causing you to gain and lose these perks. Kill a werewolf to be cured.
+# TODO: Werewolf attribute causes victim to (after 10 turns) be shown the message: "You feel yourself transforming!" and gain 1000 agility. Also gain werewolf's attacks (as if tamed it). You now randomly transform in and out of werewolf form, causing you to gain and lose these perks. Kill a werewolf to be cured.
 # TODO: Vampire attribute causes victim to (after 10 turns) be shown the message: "You feel yourself transforming!" and divine damage now is reversed.
 # TODO: Unicorn attribute gives total invincibility for 10 turns *
 # TODO: ? attribute causes weapon to choose randomly between its attacks when fired *
@@ -7356,6 +7657,10 @@ game_objects = \
 # TODO: enrage attribute causes creature to do double damage *
 # TODO: Flower text color should be green or something (also rock text color)
 
+#New Excessive Things
+# TODO: More expensive items in towns (Made cheaper with charisma). Alternatively, charisma unlocks rarer items in towns
+# TODO: Hades death boss battle (In death, tele to underworld. Roam around avoiding demons and monsters until find Hades. Allow for discovery of boatman who can be paid with rare item to respawn.
+# TODO: Create a main health bar. Odd healths are essentially shields which, when depleted, begin damaging main health bar. (Poison plants would do general health damage, not divine.)
 
 tutorials = \
     "{ \n\
@@ -7388,7 +7693,7 @@ tutorials = \
             ], \n\
         'Attack-Stats': \n\
             [ \n\
-                'IMPORTANT (Kinda): If you or a creature has damage dealt to it in a health category not listed in said creature\\'s stats, the damage will insta-kill the creature (with some exceptions [generally these exceptions have \\'+\\' in the name.]). For example, if a creature hurts you with \\'Toxic\\' damage, you will die instantly, as you do not have Toxic health listed in your stats.''', \n\
+                'IMPORTANT (Kinda): If you or a creature has damage dealt to it in a health category not listed in said creature\\'s stats, the damage will insta-kill the creature (with some exceptions [generally these exceptions have \\'+\\' in the name.]). For example, if a creature hurts you with \\'Toxic\\' damage, you will die instantly, as you do not have Toxic health listed in your stats.', \n\
                 'When viewing a weapon\\'s tooltip, its Hit Probability for any specific attack refers to the percent chance that the attack in question will hit the selected creature. Some weapons never miss (Hit Probability: 100), others rarely hit.', \n\
                 'Listed under the Hit Probability, an attack\\'s Cooldown refers to the number of times the attack can be used before enemies can attack again. A Cooldown of zero means that every time you use the attack, the enemies fighting you will be able to attack back. A Cooldown of 1 means that after using the attack, you must use a different attack or perform some other action before being able to use the attack again, and during this time your enemies will be able to attack you once. A Cooldown of -1 means you can attack twice before being attacked back. It\\'s important to realize that many enemies also use attacks with cooldowns, so if an enemy has a cooldown of 1 and you have a cooldown of 0, you\\'ll be able to attack twice before it can attack again.', \n\
                 'Under the Cooldown, an attack\\'s Current Cooldown refers to the number of actions you have to perform before being able to use the attack again. If the Current Cooldown is greater than zero, you can not use the attack. Attacks with a current cooldown greater than zero display in red.', \n\
