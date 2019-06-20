@@ -283,7 +283,7 @@ class NPC(object):
             if self.get_health()[stat] <= 0 and stat != "Agility" and stat != "Charisma":
                 dead_healths.append(stat)
         return len(dead_healths) > 0, \
-               ("Tame" in dead_healths or "Tame+" in dead_healths or "Tame2+"), \
+               ("Tame" in dead_healths or "Tame+" in dead_healths or "Tame2+" in dead_healths), \
                ("Life" in dead_healths or "Soul" in dead_healths)
 
 
