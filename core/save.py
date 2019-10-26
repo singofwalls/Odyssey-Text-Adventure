@@ -21,9 +21,6 @@ extension = get_value("save", "extension")
 def save_to_file(game_save, file_name, saves_path=None):
     """Pickles, encrypts, and saves to file_path"""
 
-    for _object in game_save.get_path():
-        _object.clear_font()
-
     if isinstance(saves_path, type(None)):
         saves_path = get_saves_path()
 

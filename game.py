@@ -63,10 +63,6 @@ class GameAction(object):
             text_list = [Text(text_list)]
         self.text_list = text_list
 
-    def clear_font(self):
-        for text in self.text_list:
-            text.clear_font()
-
     def set_text(self, text):
         old_text = self.get_text_object()
         old_text.set_text(text)
@@ -126,13 +122,6 @@ class GameObject(GameAction):
         else:
             self.attributes = attributes
         self.tooltip = self.get_tooltip()
-
-    def clear_font(self):
-        GameAction.clear_font(self)
-        for _object in self.contained_objects:
-            _object.clear_font()
-        for _object in self.contained_actions:
-            _object.clear_font()
 
     def copy(self):
         new_obj = GameObject(self.text_list, self.contained_objects,
@@ -900,7 +889,7 @@ class GameSave(object):
                         "NPC")
                     npc_word_list.append(npc.get_word())
             return npc_word_list
-        else:
+        elif not wander:
             # Only spawn one random creature
             npcs = location.gen_objects(location.npcs)
             living_npcs = []
@@ -1934,7 +1923,18 @@ def start(_get_input, update_textbox, _set_choices, mark_temporary,
                                Text(".", new_line=True)])
                 else:
                     # Escaped
-                    game_save.gen_location()
+                    if game_save.get_path()[0].find_object( #Return to Labyrinth
+                                "Surroundings").get_attribute(
+                                "location").get_name() == "Labyrinth":
+                        if random.randint(0, 20) == 20:
+                            game_save.gen_location()
+                            add_event([Text(
+                                "You escaped the Labyrinth.",
+                                color=prompt_color, new_line=True)])
+                        else:
+                            game_save.gen_location("Labyrinth")
+                    else:
+                        game_save.gen_location()
                     display_location()
                 choosing = False
 
@@ -2470,7 +2470,6 @@ def start(_get_input, update_textbox, _set_choices, mark_temporary,
     save_to_file(game_save, game_save.name + "." + extension)
 
     # TODO: 'AOE' att on attacks: Area of effect
-    # TODO: Only allow "Combat" att to heal in combat |||READ: I changed it so that the rod can only heal when below starting health. This todo is now irrelevant.X
     # TODO: Display worn items ('Worn' Attribute)
     # TODO: Buy with treasure at towns
     # TODO: Read/Write stories with book
@@ -2480,3 +2479,8 @@ def start(_get_input, update_textbox, _set_choices, mark_temporary,
     # TODO: River Stix makes you invincible except for one random health
     # TODO: 'Unique' att on items
     # TODO: Fix story teller not mad if attacked
+
+
+# TODO: Auto switch to same type of weapon if one runs out of ammo
+# TODO: Handle loading game save in which you are dead
+# TODO: Save/load events? Do not remove on out of screen?

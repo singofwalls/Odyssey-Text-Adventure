@@ -2020,11 +2020,10 @@ game_objects = \
                               'Choice Probability': 0, \n\
                               'Hit Probability': 100, \n\
                               'Cooldown': 0, \n\
-                              'Ammo': 3, \n\
                               'Damages': {}, \n\
                               'Effect Probabilities': {}, \n\
                               'Effectiveness': {}, \n\
-                              'Attributes': {'Thread': True, 'Self': True}, \n\
+                              'Attributes': {'Thread': True, 'Consumable': True, 'Self': True}, \n\
                           }, \n\
                       ], \n\
                   'Attributes': {}, \n\
@@ -3388,7 +3387,7 @@ game_objects = \
                 }, \n\
                 { \n\
                     'Name': 'Erinyes', \n\
-                    'Description': 'A Fury. A Godess of Vengeance.', \n\
+                    'Description': 'A Fury. A Goddess of Vengeance.', \n\
                     'Health': {'Brute': 4000, 'Sharp': 3000, 'Burn': 2000, 'Freeze': 2000, 'Tame': 10000, 'Agility': 6000}, \n\
                     'Aggressiveness': 100, \n\
                     'Weapons': \n\
@@ -6261,37 +6260,37 @@ game_objects = \
                 }, \n\
                 { \n\
                     'Name': 'Kibisis', \n\
-                    'Probability': 15, \n\
+                    'Probability': 1.5, \n\
                     'Fraction': 0, \n\
                     'Max': 1, \n\
                 }, \n\
                 { \n\
                     'Name': 'Daedalus\\'s-Wings', \n\
-                    'Probability': 30, \n\
-                    'Fraction': 0, \n\
-                    'Max': 1, \n\
-                }, \n\
-                { \n\
-                    'Name': 'Water-of-The-River-Styx', \n\
-                    'Probability': 5, \n\
-                    'Fraction': 0, \n\
-                    'Max': 1, \n\
-                }, \n\
-                { \n\
-                    'Name': 'Baetylus', \n\
-                    'Probability': 5, \n\
-                    'Fraction': 2, \n\
-                    'Max': 3, \n\
-                }, \n\
-                { \n\
-                    'Name': 'Eros\\'s-Bow', \n\
                     'Probability': 3, \n\
                     'Fraction': 0, \n\
                     'Max': 1, \n\
                 }, \n\
                 { \n\
+                    'Name': 'Water-of-The-River-Styx', \n\
+                    'Probability': .5, \n\
+                    'Fraction': 0, \n\
+                    'Max': 1, \n\
+                }, \n\
+                { \n\
+                    'Name': 'Baetylus', \n\
+                    'Probability': .5, \n\
+                    'Fraction': 2, \n\
+                    'Max': 3, \n\
+                }, \n\
+                { \n\
+                    'Name': 'Eros\\'s-Bow', \n\
+                    'Probability': .3, \n\
+                    'Fraction': 0, \n\
+                    'Max': 1, \n\
+                }, \n\
+                { \n\
                     'Name': 'Pheme\\'s-Trumpet', \n\
-                    'Probability': 10, \n\
+                    'Probability': 1, \n\
                     'Fraction': 0, \n\
                     'Max': 1, \n\
                 }, \n\
@@ -6303,13 +6302,13 @@ game_objects = \
                 }, \n\
                 { \n\
                     'Name': 'Omphalos', \n\
-                    'Probability': 15, \n\
+                    'Probability': 1.5, \n\
                     'Fraction': 0, \n\
                     'Max': 1, \n\
                 }, \n\
                 { \n\
                     'Name': 'Emerald-Tablet', \n\
-                    'Probability': 20, \n\
+                    'Probability': 2, \n\
                     'Fraction': 0, \n\
                     'Max': 1, \n\
                 }, \n\
@@ -6321,13 +6320,13 @@ game_objects = \
                 }, \n\
                 { \n\
                     'Name': 'Wooden-Cow', \n\
-                    'Probability': 10, \n\
+                    'Probability': 1, \n\
                     'Fraction': 0, \n\
                     'Max': 1, \n\
                 }, \n\
                 { \n\
                     'Name': 'Brazen-Shield', \n\
-                    'Probability': 20, \n\
+                    'Probability': 2, \n\
                     'Fraction': 0, \n\
                     'Max': 1, \n\
                 }, \n\
@@ -6453,7 +6452,7 @@ game_objects = \
                 }, \n\
                 { \n\
                     'Name': 'Daedalus\\'s-Hand-Canon', \n\
-                    'Probability': .5, \n\
+                    'Probability': .05, \n\
                     'Fraction': 0, \n\
                     'Max': 1, \n\
                 }, \n\
@@ -6477,7 +6476,7 @@ game_objects = \
                 }, \n\
                 { \n\
                     'Name': 'Orpheus\\'s-Lyre', \n\
-                    'Probability': 8, \n\
+                    'Probability': .8, \n\
                     'Fraction': 0, \n\
                     'Max': 1, \n\
                 }, \n\
@@ -6813,7 +6812,7 @@ game_objects = \
                             }, \n\
                             { \n\
                                 'Name': 'Staff-of-Travel', \n\
-                                'Probability': 5, \n\
+                                'Probability': .5, \n\
                                 'Fraction': 5, \n\
                                 'Max': 1, \n\
                             }, \n\
@@ -7628,20 +7627,20 @@ game_objects = \
                 'Treasure', \n\
             ], \n\
     }"
-#TODO: Olympus is war zone of infinite gods and their duplicates
+# TODO: Olympus is war zone of infinite gods and their duplicates
 
 # TODO: Figure out why thread ammo is universal to all thread
 # TODO: Only allowed to pay story tellers once
 
-#TODO: Make thread one use. Teles to laby. Laby is now a system. Leaving location within just regens the room. give 1/20 chance of escaping laby.
-#TODO: ^Same with olympus. (Eventually, same with underworld)
+# TODO: DONE DONE DONE Make thread one use. Teles to laby. Laby is now a system. Leaving location within just regens the room. give 1/20 chance of escaping laby.
+# TODO: ^Same with olympus. (Eventually, same with underworld)
 
 # TODO: You team
 # TODO: if don't have tame health, can't be tamed
 # TODO: Individual story tellers are unique (don't come back after death)
 # TODO: Spawn-Demon summons demon after 3 moves.
 # TODO: Mark causes all creatures 100% aggro on target.
-# TODO: Reverse attribute negates all damages done to you
+# TODO: Reverse attribute inverses all damages done to you
 # TODO: Styx-Death attribute kills player and gives message: You could not withstand the pull of the dead.
 # TODO: Attributes: Styx-Brute, Styx-Sharp, Styx-Burn, Styx-Freeze, Styx-Soul, Styx-Life, Styx-Toxin, Styx-Focus, Styx-Divine, Styx-Mind cause attack to immediately reduce respective health to 1.
 # TODO: Werewolf attribute causes victim to (after 10 turns) be shown the message: "You feel yourself transforming!" and gain 1000 agility. Also gain werewolf's attacks (as if tamed it). You now randomly transform in and out of werewolf form, causing you to gain and lose these perks. Kill a werewolf to be cured.
@@ -7652,12 +7651,11 @@ game_objects = \
 # TODO: trumpet attribute forces a creature to wander in. The rarer the creature, the more likely to wander.
 # TODO: Mead attribute = damages given by item are temporary (restore after 10 moves). you deal 1.2x more Brute and sharp damage
 # TODO: AOE Attribute
-# TODO: Combat attribute (only usable in combat) *
 # TODO: Worn attribute displays used item in inventory as being worn
 # TODO: enrage attribute causes creature to do double damage *
 # TODO: Flower text color should be green or something (also rock text color)
 
-#New Excessive Things
+# New Excessive Things
 # TODO: More expensive items in towns (Made cheaper with charisma). Alternatively, charisma unlocks rarer items in towns
 # TODO: Hades death boss battle (In death, tele to underworld. Roam around avoiding demons and monsters until find Hades. Allow for discovery of boatman who can be paid with rare item to respawn.
 # TODO: Create a main health bar. Odd healths are essentially shields which, when depleted, begin damaging main health bar. (Poison plants would do general health damage, not divine.)

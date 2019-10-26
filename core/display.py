@@ -99,12 +99,12 @@ class Text(object):
         self.label = self.font.render(self.text.strip(), 1, self.color,
                                       self.highlight_color)
 
-    def clear_font(self):
-        """Clear font for saving"""
-        self.font = None
-        if not isinstance(self.tooltip, type(None)):
-            for text in self.tooltip:
-                text.clear_font()
+    def __reduce__(self):
+        """Specify attributes needed to recreate text object for pickling"""
+        return (self.__class__, (self.text, self.tooltip, self.hide_tooltip,
+                                 self.color, self.highlight_color, self.font_name,
+                                 self.font_size, self.bold, self.italic, self.new_line,
+                                 self.whole, self.click, False))
 
     def set_x_pos(self, x_pos):
         """Sets x_pos to given pos
@@ -134,12 +134,6 @@ class Text(object):
         if isinstance(new_line, type(None)):
             new_line = self.new_line
 
-        copied_tooltip = self.tooltip
-        if not isinstance(self.tooltip, type(None)):
-            copied_tooltip = []
-            for text in self.tooltip:
-                copied_tooltip.append(text)  # .copy())  # Doesn't seem to have impact other than speed
-
         font_name = self.font_name
         font_size = self.font_size
         if isinstance(click, type(None)):
@@ -151,7 +145,7 @@ class Text(object):
         if isinstance(text_string, type(None)):
             text_string = self.text
 
-        text = Text(text_string, copied_tooltip, self.hide_tooltip, self.color,
+        text = Text(text_string, self.tooltip, self.hide_tooltip, self.color,
                     self.highlight_color, font_name, font_size,
                     self.bold, self.italic, new_line, self.whole,
                     click, True)
