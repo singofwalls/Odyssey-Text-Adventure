@@ -18,6 +18,12 @@ from core.configs import get_value, change_config
 extension = get_value("save", "extension")
 
 
+def rename_file(file_name):
+    """Rename a file after dying."""
+    file_path = get_saves_path() + file_name
+    os.rename(file_path, get_saves_path() + "dead - " + file_name)
+
+
 def save_to_file(game_save, file_name, saves_path=None):
     """Pickles, encrypts, and saves to file_path"""
 

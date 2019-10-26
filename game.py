@@ -9,7 +9,7 @@ from functools import reduce
 from core.configs import get_value
 from core.display import Text
 from core.files import get_files
-from core.save import get_saves_path, save_to_file, load_from_file
+from core.save import get_saves_path, save_to_file, load_from_file, rename_file
 from core.tools import weighted_choice, cap_all_words
 from game_objects import dict_to_attack, LOCATIONS_LIST, WEAPONS_LIST, EVERYTHING_LIST, all_attacks, NPC, \
     ambrosia, starting_health, treasure, cerastes, gold_ingot, spartae, minotaur,\
@@ -255,6 +255,7 @@ class GameSave(object):
         self.fleece = False
         self.sack = False
         self.sleep = 0
+        self.dead = False
         self.path = [
             GameObject([Text("Game", color=input_color)],
                        [
@@ -1748,10 +1749,13 @@ def start(_get_input, update_textbox, _set_choices, mark_temporary,
     add_event()
 
     # Spawn Location
-    display_location()
+    if not game_save.dead:
+        display_location()
 
-    # Main game loop
-    alive = not game_save.check_if_dead()
+        # Main game loop
+        alive = not game_save.check_if_dead()
+    else:
+        alive = False
     while alive:  # Main game loop
         save_to_file(game_save, game_save.name + "." + extension)
 
@@ -2467,7 +2471,11 @@ def start(_get_input, update_textbox, _set_choices, mark_temporary,
         display_objects()
         set_dead()
 
-    save_to_file(game_save, game_save.name + "." + extension)
+    file_name = game_save.name + "." + extension
+    if not game_save.dead:
+        rename_file(file_name)
+    game_save.dead = True
+    save_to_file(game_save, "dead - " + file_name)
 
     # TODO: 'AOE' att on attacks: Area of effect
     # TODO: Display worn items ('Worn' Attribute)

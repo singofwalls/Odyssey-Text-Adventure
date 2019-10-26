@@ -649,7 +649,7 @@ class Location(object):
                     amount = current_amounts[npc.get_type()]
                 num = location_object.gen_number(wander, amount)
             else:
-                num = location_object.gen_number()
+                num = location_object.gen_number(wander)
             for i in range(0, num):
                 current_items.append(location_object.contained_object)
         return current_items
@@ -682,7 +682,7 @@ class LocationObject(object):
             if self.fraction >= 1:
                 self.current_prob /= (self.fraction * 2)
             else:
-                self.current_prob *= (self.fraction * 2)  # Do not want wandering in to have greater chance than spawning in
+                self.current_prob *= (self.fraction / 2)  # Do not want wandering in to have greater chance than spawning in
 
         num = 0
         while True:
@@ -693,7 +693,12 @@ class LocationObject(object):
                     if num + current_num > self.max > 0:
                         return 0
                     return num
-                self.current_prob /= self.fraction
+                fraction_nudge = self.fraction
+                if self.fraction < 1:
+                    fraction_nudge /= 1.5
+                elif self.fraction > 1:
+                    fraction_nudge *= 1.5
+                self.current_prob /= fraction_nudge
             else:
                 return num
 
