@@ -649,7 +649,7 @@ class Location(object):
                     amount = current_amounts[npc.get_type()]
                 num = location_object.gen_number(wander, amount)
             else:
-                num = location_object.gen_number(wander)
+                num = location_object.gen_number()
             for i in range(0, num):
                 current_items.append(location_object.contained_object)
         return current_items

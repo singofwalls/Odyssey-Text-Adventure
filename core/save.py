@@ -21,8 +21,13 @@ extension = get_value("save", "extension")
 def rename_file(file_name):
     """Rename a file after dying."""
     file_path = get_saves_path() + file_name
-    os.rename(file_path, get_saves_path() + "dead - " + file_name)
-
+    num = 0
+    while True:
+        try:
+            os.rename(file_path, get_saves_path() + f"dead {num} - " + file_name)
+            break
+        except FileExistsError:
+            num += 1
 
 def save_to_file(game_save, file_name, saves_path=None):
     """Pickles, encrypts, and saves to file_path"""
@@ -128,7 +133,7 @@ def get_saves_path():
     """Returns the path to the saves folder and creates new one if missing"""
 
     stored_path = get_value("save", "saves_path")\
-        .replace("~Game Root~", get_game_root())
+        .replace("~Game Root~", get_game_root()).replace("//", "/")
 
     check_path(stored_path)
     return stored_path

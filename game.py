@@ -2459,6 +2459,7 @@ def start(_get_input, update_textbox, _set_choices, mark_temporary,
         if not is_running():
             break
 
+    file_name = game_save.name + "." + extension
     if is_running():
         add_event(
             [Text("YOU ARE DEAD", color=dead_color, font_name=dead_font,
@@ -2471,11 +2472,12 @@ def start(_get_input, update_textbox, _set_choices, mark_temporary,
         display_objects()
         set_dead()
 
-    file_name = game_save.name + "." + extension
-    if not game_save.dead:
-        rename_file(file_name)
-    game_save.dead = True
-    save_to_file(game_save, "dead - " + file_name)
+        if not game_save.dead:
+            rename_file(file_name)
+        game_save.dead = True
+        save_to_file(game_save, "dead - " + file_name)
+    else:
+        save_to_file(game_save, file_name)
 
     # TODO: 'AOE' att on attacks: Area of effect
     # TODO: Display worn items ('Worn' Attribute)
