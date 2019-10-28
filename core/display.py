@@ -21,6 +21,16 @@ scroll_bar_width = get_value("display", "scroll_bar_width")
 
 priority_word_wrap_chars = get_value("display", "priority_word_wrap_chars")
 
+FONTS = {}
+
+
+def get_font(attrs):
+    if attrs in FONTS:
+        return FONTS[attrs]
+    font = pygame.font.SysFont(attrs[0], attrs[1], attrs[2], attrs[3])
+    FONTS[attrs] = font
+    return font
+
 
 class Text(object):
     """Stores a phrase, font, color, and tooltip
@@ -38,10 +48,10 @@ class Text(object):
     """
 
     def __init__(self, text, tooltip=None, hide_tooltip=False,
-                 color=default_color,
-                 highlight_color=None, font_name=default_font,
-                 font_size=default_font_size, bold=False, italic=False,
-                 new_line=False, whole=None, click=False, copying=False):
+                 color=default_color, highlight_color=None,
+                 font_name=default_font, font_size=default_font_size,
+                 bold=False, italic=False, new_line=False, whole=None,
+                 click=False, copying=False):
 
         self.text = text
         if isinstance(whole, type(None)):
@@ -67,8 +77,8 @@ class Text(object):
 
         if not self.hide_tooltip and not isinstance(self.tooltip, type(None)):
             self.highlight_color = has_tooltip_color  # Uncomment for tooltip
-            #                                               highlight
-            # self.italic = True
+            #                                               highlight  #   #
+            #                                               self.italic = True
         if not copying:
             self.font = None
             self.update_font()
@@ -81,14 +91,14 @@ class Text(object):
     def update_font(self, force_update=False):
         if isinstance(self.font, type(None)) or force_update:
             try:
-                self.font = pygame.font.SysFont(self.font_name, self.font_size,
-                                                self.bold, self.italic)
+                self.font = get_font(
+                    (self.font_name, self.font_size, self.bold, self.italic))
             except OSError:
                 print(
                     "Could not load font " + self.font_name + ", using default")
                 self.font_name = default_font
-                self.font = pygame.font.SysFont(self.font_name, self.font_size,
-                                                self.bold, self.italic)
+                self.font = get_font(
+                    (self.font_name, self.font_size, self.bold, self.italic))
 
     def update_size(self, force_font=False):
         """Updates width and height based on font and text"""
@@ -101,10 +111,10 @@ class Text(object):
 
     def __reduce__(self):
         """Specify attributes needed to recreate text object for pickling"""
-        return (self.__class__, (self.text, self.tooltip, self.hide_tooltip,
-                                 self.color, self.highlight_color, self.font_name,
-                                 self.font_size, self.bold, self.italic, self.new_line,
-                                 self.whole, self.click, False))
+        return (self.__class__, (
+            self.text, self.tooltip, self.hide_tooltip, self.color,
+            self.highlight_color, self.font_name, self.font_size, self.bold,
+            self.italic, self.new_line, self.whole, self.click, False))
 
     def set_x_pos(self, x_pos):
         """Sets x_pos to given pos
@@ -146,9 +156,8 @@ class Text(object):
             text_string = self.text
 
         text = Text(text_string, self.tooltip, self.hide_tooltip, self.color,
-                    self.highlight_color, font_name, font_size,
-                    self.bold, self.italic, new_line, self.whole,
-                    click, True)
+                    self.highlight_color, font_name, font_size, self.bold,
+                    self.italic, new_line, self.whole, click, True)
 
         text.font = self.font
         text.width = self.width
@@ -282,7 +291,8 @@ class Text(object):
                 if word_index == len(words) - 1:
                     phrase_modifier = ""
                     new_line = True
-                phrases.append(self.copy(self.click, word + phrase_modifier, new_line))
+                phrases.append(
+                    self.copy(self.click, word + phrase_modifier, new_line))
             else:
                 if word_index != len(words) - 1:
                     # Next word starts with phrase
@@ -324,8 +334,8 @@ class TextBox(object):
 
     def __init__(self, name, bounds, text_list, border_size=1,
                  border_color=(255, 255, 255), margin_size=(10, 5),
-                 alignment="left", enable_scrolling=True,
-                 show_scroll_bar=True, scroll_bar_color=(200, 200, 200),
+                 alignment="left", enable_scrolling=True, show_scroll_bar=True,
+                 scroll_bar_color=(200, 200, 200),
                  _scroll_bar_width=scroll_bar_width):
 
         self.name = name
@@ -412,7 +422,7 @@ class TextBox(object):
         phrase_index = 0
         for phrase in line:
             if phrase_index < len(line) - 1 and line[
-                        phrase_index + 1].get_text() != " ":
+                phrase_index + 1].get_text() != " ":
                 new_line.append(phrase)
             else:
                 word = phrase.copy()
@@ -452,10 +462,10 @@ class TextBox(object):
         self.resolution = resolution
         self.x_coord = (resolution[0] * self.x) + self.margin_size[0]
         self.y_coord = (resolution[1] * self.y) + self.margin_size[1]
-        self.width = (resolution[
-                          0] * self.x2 - self.x_coord) - self.margin_size[0]
-        self.height = (resolution[
-                           1] * self.y2 - self.y_coord) - self.margin_size[1]
+        self.width = (resolution[0] * self.x2 - self.x_coord) - \
+                     self.margin_size[0]
+        self.height = (resolution[1] * self.y2 - self.y_coord) - \
+                      self.margin_size[1]
         if self.show_scroll_bar:
             self.width -= self.scroll_bar_width
 
@@ -473,19 +483,21 @@ class TextBox(object):
         lines = []
         line = []
 
-        while len(shortened_text_list) > 0 and not (len(shortened_text_list) == 1 and shortened_text_list[0].text == ''):
+        while len(shortened_text_list) > 0 and not (
+                len(shortened_text_list) == 1 and shortened_text_list[
+            0].text == ''):
 
             advanced_lines = False
             line, shortened_text_list = self.create_line(
                 line + shortened_text_list)
             if len(shortened_text_list) == 0 and (
-                            len(line) < 1 or not line[-1].is_new_line()):
+                    len(line) < 1 or not line[-1].is_new_line()):
                 # No more words, line fits on screen
                 lines.append(self.strip_line(line))
                 break
 
             if self.get_line_width(line) < width and (
-                            len(line) < 1 or not line[-1].is_new_line()):
+                    len(line) < 1 or not line[-1].is_new_line()):
                 # Room to fit more chars but next phrase doesn't fit
                 # More chars to use and not new line
 
@@ -507,9 +519,10 @@ class TextBox(object):
                         for char_index in indexes:
                             current_halves = phrase.split(char_index)
                             current_halves[0].append(wrap_char)
-                            current_halves[1].set_text(current_halves[1].text[1:])
-                            distance = width - self.get_line_width(
-                                line) - current_halves[0].get_width()
+                            current_halves[1].set_text(
+                                current_halves[1].text[1:])
+                            distance = width - self.get_line_width(line) - \
+                                       current_halves[0].get_width()
 
                             if min_distance > distance >= 0:
                                 # Save halves closest to width
@@ -590,8 +603,7 @@ class TextBox(object):
         for phrase in text_list:
             if phrase.text == "-1 ":
                 print("HERE")
-            if phrase.get_width() + self.get_line_width(
-                    line) <= self.width:
+            if phrase.get_width() + self.get_line_width(line) <= self.width:
                 shortened_text_list.pop(0)
                 word = phrase  # 10x faster without copying now #.copy()
                 if phrase_num == 0:
@@ -680,8 +692,9 @@ class TextBox(object):
         line_num = 0
         self.justified_lines = {}
         for line in self.all_text_lines:
-            if self.pure_justified or (line_num < len(self.all_text_lines) - 1
-                                       and not line[-1].is_new_line()):
+            if self.pure_justified or (
+                    line_num < len(self.all_text_lines) - 1 and not line[
+                -1].is_new_line()):
                 # Justify if not last line and previous line is not a new_line
                 # Or if pure_justified
                 new_line = []
@@ -697,12 +710,12 @@ class TextBox(object):
                             previous_word = words[word_num - 1]
                         elif phrase_num != 0:
                             previous_word = current_line[phrase_num - 1]
-                        if word.get_text().endswith(" ") \
-                                or (word.get_text().startswith(" ")
-                                    and (isinstance(
-                                        previous_word, type(None))
-                                         or not previous_word.get_text(
-                                        ).endswith(" "))):
+                        if word.get_text().endswith(" ") or (
+                                word.get_text().startswith(" ") and (
+                                isinstance(previous_word, type(
+                                    None)) or not previous_word.get_text(
+
+                        ).endswith(" "))):
                             num_spaces += 1
                         new_line.append(word)
                         word_num += 1
@@ -739,8 +752,8 @@ class TextBox(object):
         """
 
         distance = from_cursor_pos[1] - cursor_pos[1]
-        distance_percent = distance / (self.total_bar_height
-                                       - self.ideal_bar_height)
+        distance_percent = distance / (
+                self.total_bar_height - self.ideal_bar_height)
         scroll_offset = distance_percent * self.max_scroll
         if not isinstance(self.bar_remainder, type(None)):
             scroll_offset += self.bar_remainder
@@ -797,7 +810,8 @@ class TextBox(object):
         Called externally.
 
         :type alignment: str
-        :param alignment: must be either "left", "right", "center", or "justified"
+        :param alignment: must be either "left", "right", "center",
+        or "justified"
         """
 
         self.alignment = alignment
@@ -901,30 +915,31 @@ class TextBox(object):
         :type display: pygame.Surface
         """
         if self.show_scroll_bar and self.max_scroll > 0:
-            self.bar_x = self.x2 * self.resolution[0] - self.scroll_bar_width \
-                         - 1
+            self.bar_x = self.x2 * self.resolution[
+                0] - self.scroll_bar_width - 1
             min_y = self.y * self.resolution[1] + 1
             self.bar_width = self.scroll_bar_width
             self.total_bar_height = (self.y2 * self.resolution[1]) - min_y
 
             self.ideal_bar_height = self.total_bar_height * (
-                self.max_active_lines / len(self.all_text_lines))
+                    self.max_active_lines / len(self.all_text_lines))
             self.bar_height = max(min_scroll_bar_height * self.total_bar_height,
                                   self.ideal_bar_height)
-            self.bar_y = min_y + (self.total_bar_height
-                                  - self.bar_height) * (
-                                     self.scroll_pos / self.max_scroll)
+            self.bar_y = min_y + (self.total_bar_height - self.bar_height) * (
+                    self.scroll_pos / self.max_scroll)
 
             pygame.draw.rect(display, self.scroll_bar_color,
                              [self.bar_x, self.bar_y, self.bar_width,
                               self.bar_height])
 
     def get_x(self):
-        return (self.x_coord - self.margin_size[0]) + ((self.x2 - self.x) * self.resolution[0])
+        return (self.x_coord - self.margin_size[0]) + (
+                (self.x2 - self.x) * self.resolution[0])
 
     def get_y(self, bottom=False):
         if bottom:
-            return (self.y_coord - self.margin_size[1]) + ((self.y2 - self.y) * self.resolution[1])
+            return (self.y_coord - self.margin_size[1]) + (
+                    (self.y2 - self.y) * self.resolution[1])
         return (self.y_coord - self.margin_size[1])
 
     def render(self, display, resolution):
@@ -975,8 +990,8 @@ class TextBox(object):
                 alignment_offset = self.width - self.get_line_width(new_line)
 
             elif self.alignment == "center":
-                alignment_offset = \
-                    (self.width - self.get_line_width(new_line)) / 2
+                alignment_offset = (self.width - self.get_line_width(
+                    new_line)) / 2
 
             elif self.alignment == "justified":
                 current_line_num = line_num + self.scroll_pos
@@ -988,9 +1003,10 @@ class TextBox(object):
                 if len(new_line) > 1:
                     # If multiple words on line, justify. Otherwise, left align
                     if num_spaces != 0:
-                        alignment_multiplier = (self.width
-                                                - self.get_line_width(
-                            new_line)) / num_spaces
+                        alignment_multiplier = (
+                                                       self.width -
+                                                       self.get_line_width(
+                                                   new_line)) / num_spaces
             else:
                 # Not an alignment option
                 print(self.alignment + " must be 'left', 'right', 'center'"
@@ -1006,14 +1022,14 @@ class TextBox(object):
                 label = phrase.get_label()
 
                 spaced = False
-                if phrase.get_text().startswith(" ") \
-                        and (phrase_num == 0 or not new_line[
-                                phrase_num - 1].get_text().endswith(" ")):
+                if phrase.get_text().startswith(" ") and (
+                        phrase_num == 0 or not new_line[
+                    phrase_num - 1].get_text().endswith(" ")):
                     current_alignment_multiplier += alignment_multiplier
                     spaced = True  # Space already accounted for
 
-                x = self.x_coord + x_offset + alignment_offset \
-                    + current_alignment_multiplier
+                x = self.x_coord + x_offset + alignment_offset + \
+                    current_alignment_multiplier
                 y = self.y_coord + y_offset
                 display.blit(label, (x, y))
 
