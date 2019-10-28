@@ -867,7 +867,7 @@ game_objects = \
                                 'Name': 'Hit', \n\
                                 'Past Tense': 'hit', \n\
                                 'Choice Probability': 100, \n\
-                                'Hit Probability': 60, \n\
+                                'Hit Probability': 90, \n\
                                 'Cooldown': 0, \n\
                                 'Damages': {'Brute': 400}, \n\
                                 'Effect Probabilities': {'Brute': 100}, \n\
@@ -4171,7 +4171,7 @@ game_objects = \
                     'Name': 'Pegasus', \n\
                     'Description': 'A pure white, winged horse. Majestic and divine. Something about it seems oddly terrifying.', \n\
                     'Health': {'Brute': 5000, 'Sharp': 3500, 'Burn': 3000, 'Freeze': 3500, 'Tame': 100000000, 'Divine': 1000, 'Tame+': 10, 'Agility': 400}, \n\
-                    'Aggressiveness': 40, \n\
+                    'Aggressiveness': 0, \n\
                     'Weapons': \n\
                         [ \n\
                             { \n\
