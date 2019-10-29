@@ -1101,7 +1101,7 @@ class GameSave(object):
                             targets.append(_target)
 
                 your_team = "You" in npc_teams
-                if not self.check_if_dead() and not your_team:
+                if not self.check_if_dead() and (not your_team or _npc.target == "You"):
                     targets.append("You")
                 target = _npc.get_target(targets, self.camo, self.camo_plus)
 
