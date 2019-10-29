@@ -4708,7 +4708,7 @@ game_objects = \
                 { \n\
                     'Name': 'Laelaps', \n\
                     'Description': 'An alert, brown greyhound. It watches you happily.', \n\
-                    'Health': {'Brute': 2000, 'Sharp': 1000, 'Burn': 1000, 'Freeze': 2000, 'Tame': 100, 'Agility': 0}, \n\
+                    'Health': {'Brute': 50, 'Sharp': 10, 'Burn': 10, 'Freeze': 20, 'Tame': 100, 'Agility': 0}, \n\
                     'Aggressiveness':0, \n\
                     'Weapons': \n\
                         [ \n\
