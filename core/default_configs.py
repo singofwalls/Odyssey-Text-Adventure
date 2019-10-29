@@ -368,7 +368,7 @@ game_objects = \
                                 'Attributes': {}, \n\
                             }, \n\
                         ], \n\
-                    'Attributes': {}, \n\
+                    'Attributes': {'Body': True}, \n\
                 }, \n\
                 { \n\
                     'Name': 'Hrothgar\\'s-Gift', \n\
@@ -1696,7 +1696,7 @@ game_objects = \
                                 'Attributes': {}, \n\
                             }, \n\
                         ], \n\
-                    'Attributes': {}, \n\
+                    'Attributes': {'Body': True}, \n\
                 }, \n\
                 { \n\
                     'Name': 'Hephaestus\\'s-Labrys', \n\
@@ -1742,7 +1742,7 @@ game_objects = \
                                 'Attributes': {'Consumable': True, 'Self': True, 'Worn': True}, \n\
                             }, \n\
                         ], \n\
-                    'Attributes': {'Flower': 'Shirt-of-Nessus'}, \n\
+                    'Attributes': {'Flower': 'Shirt-of-Nessus', 'Body': True}, \n\
                 }, \n\
                 { \n\
                     'Name': 'Golden-Fleece', \n\
@@ -1862,14 +1862,13 @@ game_objects = \
                                 'Choice Probability': 0, \n\
                                 'Hit Probability': 100, \n\
                                 'Cooldown': 10, \n\
-                                'Ammo': 3, \n\
                                 'Damages': {}, \n\
                                 'Effect Probabilities': {}, \n\
                                 'Effectiveness': {}, \n\
-                                'Attributes': {'Cooldown': True, 'Spawn-Anything': True, 'Self': True}, \n\
+                                'Attributes': {'Cooldown': True, 'Spawn-Anything': True, 'Self': True, 'Consumable': True}, \n\
                             }, \n\
                         ], \n\
-                    'Attributes': {}, \n\
+                    'Attributes': {'Body': True}, \n\
                 }, \n\
                 { \n\
                     'Name': 'Daedalus\\'s-Hand-Canon', \n\
@@ -2027,7 +2026,7 @@ game_objects = \
                               'Attributes': {'Thread': True, 'Consumable': True, 'Self': True}, \n\
                           }, \n\
                       ], \n\
-                  'Attributes': {}, \n\
+                  'Attributes': {'Body': True}, \n\
                 }, \n\
                 { \n\
                   'Name': 'Staff-of-Travel', \n\
@@ -2408,8 +2407,8 @@ game_objects = \
                                 'Hit Probability': 100, \n\
                                 'Cooldown': 0, \n\
                                 'Damages': {'Brute': -1000000, 'Sharp': -1000000, 'Burn': -1000000, 'Freeze': -1000000, 'Agility': 200}, \n\
-                                'Effect Probabilities': {'Brute': 100, 'Sharp': 100, 'Burn': 100, 'Agility': 100}, \n\
-                                'Effectiveness': {'Brute': 100, 'Sharp': 100, 'Burn': 100, 'Agility': 100}, \n\
+                                'Effect Probabilities': {'Brute': 100, 'Sharp': 100, 'Burn': 100, 'Freeze': 100, 'Agility': 100}, \n\
+                                'Effectiveness': {'Brute': 100, 'Sharp': 100, 'Burn': 100, 'Freeze': 100, 'Agility': 100}, \n\
                                 'Attributes': {'Consumable': True, 'Self': True, 'Worn': True}, \n\
                             }, \n\
                         ], \n\
