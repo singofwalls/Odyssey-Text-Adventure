@@ -271,7 +271,7 @@ game_objects = \
                                 'Choice Probability': 50, \n\
                                 'Hit Probability': 70, \n\
                                 'Cooldown': 1, \n\
-                                    'Damages': {'Sharp': 1000}, \n\
+                                'Damages': {'Sharp': 1000}, \n\
                                 'Effect Probabilities': {'Sharp': 100}, \n\
                                 'Effectiveness': {'Sharp': 80}, \n\
                                 'Attributes': {}, \n\
@@ -3030,7 +3030,7 @@ game_objects = \
                     'Name': 'Calydonian-Boar', \n\
                     'Description': 'A monstrous boar. It towers even above the tallest trees.', \n\
                     'Health': {'Brute': 10000, 'Sharp': 6000, 'Burn': 6000, 'Freeze': 8000, 'Tame': 10000, 'Agility': 150}, \n\
-                    'Aggressiveness': 0, \n\
+                    'Aggressiveness': 10, \n\
                     'Weapons': \n\
                         [ \n\
                             { \n\
@@ -4171,7 +4171,7 @@ game_objects = \
                     'Name': 'Pegasus', \n\
                     'Description': 'A pure white, winged horse. Majestic and divine. Something about it seems oddly terrifying.', \n\
                     'Health': {'Brute': 5000, 'Sharp': 3500, 'Burn': 3000, 'Freeze': 3500, 'Tame': 100000000, 'Divine': 1000, 'Tame+': 10, 'Agility': 400}, \n\
-                    'Aggressiveness': 0, \n\
+                    'Aggressiveness': 2, \n\
                     'Weapons': \n\
                         [ \n\
                             { \n\
@@ -4752,7 +4752,7 @@ game_objects = \
                     'Name': 'Colchian-Dragon', \n\
                     'Description': 'An ancient, monstrous serpent. Ever-wakeful, the serpent far surpasses in length and breadth a ship of fifty oars.', \n\
                     'Health': {'Brute': 80000, 'Sharp': 70000, 'Burn': 1000000, 'Freeze': 40000, 'Divine': 4900, 'Tame': 100000000, 'Agility': 1000}, \n\
-                    'Aggressiveness': 0, \n\
+                    'Aggressiveness': 100, \n\
                     'Weapons': \n\
                         [ \n\
                             'Dragon\\'s-Teeth', \n\
@@ -4822,7 +4822,7 @@ game_objects = \
                     'Name': 'Nemean-Dragon', \n\
                     'Description': 'A monstrous serpent. A gold crest is proudly set into its chest.', \n\
                     'Health': {'Brute': 20000, 'Sharp': 19000, 'Burn': 50000, 'Freeze': 10000, 'Divine': 4000, 'Tame': 40000, 'Agility': 1000}, \n\
-                    'Aggressiveness': 0, \n\
+                    'Aggressiveness': 100, \n\
                     'Weapons': \n\
                         [ \n\
                             'Dragon\\'s-Teeth', \n\
@@ -5226,7 +5226,7 @@ game_objects = \
                     'Name': 'Medusa', \n\
                     'Description': 'Best look away.', \n\
                     'Health': {'Brute': 1000, 'Sharp': 500, 'Burn': 400, 'Freeze': 500, 'Tame': 500000, 'Agility': 200}, \n\
-                    'Aggressiveness': 0, \n\
+                    'Aggressiveness': 100, \n\
                     'Weapons': \n\
                         [ \n\
                              { \n\
@@ -5466,7 +5466,7 @@ game_objects = \
                     'Name': 'Nemean-Lion', \n\
                     'Description': 'A gigantic lion. Its coat has a strange sheen.', \n\
                     'Health': {'Brute': 10000000, 'Sharp': 10000000, 'Burn': 10000000, 'Freeze': 10000000, 'Toxin': 10000000, 'Focus': 10000000, 'Tame': 10000000, 'Divine': 100, 'Agility': 4000}, \n\
-                    'Aggressiveness': 0, \n\
+                    'Aggressiveness': 100, \n\
                     'Weapons': \n\
                         [ \n\
                             { \n\
@@ -5591,7 +5591,7 @@ game_objects = \
                     'Name': 'Khalkotauroi', \n\
                     'Description': 'An intimidating, fire-breathing bull of bronze. Forged by the gods.', \n\
                     'Health': {'Brute': 40500, 'Sharp': 50000, 'Burn': 40000, 'Freeze': 30500, 'Divine': 4000, 'Tame': 100000000, 'Tame2+': 10,'Agility': 1000}, \n\
-                    'Aggressiveness': 0, \n\
+                    'Aggressiveness': 100, \n\
                     'Weapons': \n\
                         [ \n\
                             { \n\
@@ -7186,7 +7186,7 @@ game_objects = \
                 { \n\
                     'Name': 'Labyrinth', \n\
                     'Description': 'A twisting maze as terrifying as it is incomprehensible.', \n\
-                    'Probability': 2, \n\
+                    'Probability': 0, \n\
                     'Treasure': {'Max': 1, 'Min': 0, 'Probability': 30}, \n\
                     'Weapons': \n\
                         [ \n\

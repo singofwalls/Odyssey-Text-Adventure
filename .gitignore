@@ -1,0 +1,7 @@
+__*
+*.png
+Configs/
+Saves/
+.idea/
+.venv/
+*.pyc

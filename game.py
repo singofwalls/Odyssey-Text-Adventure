@@ -519,7 +519,7 @@ class GameSave(object):
             if on:
                 health[stat] += current_boost["Healths"][stat]
             else:
-                health[stat] -= current_boost["Healths"][stat]
+                health[stat] -= (current_boost["Healths"][stat] - 1)
         self.set_health(health)
 
     def boost_attacks(self):
@@ -576,7 +576,7 @@ class GameSave(object):
                                   npc.get_word(True, True))
         elif name == "The-Plowman":
             desc = "inspires you to be more righteous."
-            self.add_health_boost({"Divinity": 100000}, 30,
+            self.add_health_boost({"Divine": 100000}, 30,
                                   npc.get_word(True, True))
         elif name == "The-Reeve":
             desc = "inspires you to be quick on your feet."
@@ -604,7 +604,7 @@ class GameSave(object):
                                          attributes={"Item": bestiary}))
         elif name == "The-Parson":
             desc = "inspires you to spread the word of God."
-            self.add_attack_boost({"Divinity": 2}, 30,
+            self.add_attack_boost({"Divine": 2}, 30,
                                   npc.get_word(True, True))
         elif name == "The-Clerk":
             anthology_word = Text(anthology.get_name(), color=weapon_color,
