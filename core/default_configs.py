@@ -7635,7 +7635,6 @@ game_objects = \
 # TODO: DONE DONE DONE Make thread one use. Teles to laby. Laby is now a system. Leaving location within just regens the room. give 1/20 chance of escaping laby.
 # TODO: ^Same with olympus. (Eventually, same with underworld)
 
-# TODO: You team
 # TODO: if don't have tame health, can't be tamed
 # TODO: Individual story tellers are unique (don't come back after death)
 # TODO: Spawn-Demon summons demon after 3 moves.

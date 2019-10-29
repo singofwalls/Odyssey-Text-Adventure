@@ -2177,12 +2177,12 @@ def start(_get_input, update_textbox, _set_choices, mark_temporary,
                                                        probabilities)
                             if location not in location_choices:
                                 location_choices.append(location)
-                            if len(location_choices) == 3:
+                            if len(location_choices) == 5:
                                 break
                         choice = get_from_choices(
                             "Choose a location to travel to.", list(
-                                location.get_name() for location in list(
-                                    filter(lambda x: x.get_name() != "Olympus",
+                                location.get_type() for location in list(
+                                    filter(lambda x: x.get_type() != "Olympus",
                                            location_choices))))
                         game_save.gen_location(choice)
                         display_location()
@@ -2495,9 +2495,7 @@ def start(_get_input, update_textbox, _set_choices, mark_temporary,
     # TODO: Add multiplayer
     # TODO: River Stix makes you invincible except for one random health
     # TODO: 'Unique' att on items
-    # TODO: Fix story teller not mad if attacked
-
 
 # TODO: Auto switch to same type of weapon if one runs out of ammo
 # TODO: Make ambrosia yellow, flowers/rocks green
-# TODO: Max npc count should be total, not current
+# TODO: Create actual initiative system. Integrate with wandering as well
