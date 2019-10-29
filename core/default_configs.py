@@ -36,6 +36,7 @@ keyboard_hotkeys = \
         'r': 'Stats>You', \n\
         'a': 'Surroundings>Leave-Location', \n\
         's': 'Surroundings>Wait', \n\
+        'd': 'Stats>You>Use', \n\
     }"
 
 mouse_hotkeys = \

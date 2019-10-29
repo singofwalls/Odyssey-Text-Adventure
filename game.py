@@ -1920,6 +1920,10 @@ def start(_get_input, update_textbox, _set_choices, mark_temporary,
             elif choice == "Leave-Location":
                 multiattack = False
                 monster = game_save.check_caught()
+
+                location = game_save.get_path()[0].find_object("Surroundings").\
+                    get_attribute("location")
+
                 if monster:  # Objects eval to True
                     # Was caught
                     add_event([monster.get_word(), Text("caught "),
@@ -1927,9 +1931,7 @@ def start(_get_input, update_textbox, _set_choices, mark_temporary,
                                Text(".", new_line=True)])
                 else:
                     # Escaped
-                    if game_save.get_path()[0].find_object( #Return to Labyrinth
-                                "Surroundings").get_attribute(
-                                "location").get_name() == "Labyrinth":
+                    if location.get_name() == "Labyrinth":
                         if random.randint(0, 20) == 20:
                             game_save.gen_location()
                             add_event([Text(
@@ -1940,6 +1942,9 @@ def start(_get_input, update_textbox, _set_choices, mark_temporary,
                     else:
                         game_save.gen_location()
                     display_location()
+
+                if "Jumpscare" in location.get_attributes():
+                    choosing = False
 
             elif choice == "Wait":
                 multiattack = False
