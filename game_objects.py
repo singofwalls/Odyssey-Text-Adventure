@@ -105,8 +105,12 @@ class NPC(object):
         for attack in self.attacks:
             attack.tick()
 
-    def determine_number(self, name_nums):
+    def determine_number(self, name_nums, type_nums):
         if self.number == -1:
+            if self._type not in type_nums:
+                type_nums[self._type] = 0
+            type_nums[self._type] += 1
+
             if self.name in name_nums:
                 name_nums[self.name] += 1
                 self.number = name_nums[self.name]
@@ -114,7 +118,7 @@ class NPC(object):
                 self.number = 0
                 name_nums[self.name] = 1
 
-    def gen_name(self, name_nums):
+    def gen_name(self, name_nums, type_nums):
         if "Names" in self.attributes:
             names = list(filter(lambda x: x not in name_nums,
                                 self.get_attribute("Names")))
@@ -122,7 +126,7 @@ class NPC(object):
                 self.name = random.choice(names)
             else:
                 self.name = random.choice(self.get_attribute("Names"))
-        self.determine_number(name_nums)
+        self.determine_number(name_nums, type_nums)
 
     def add_attacks(self, _attacks):
         self.attacks += _attacks
@@ -531,11 +535,11 @@ class Weapon(object):
         else:
             self.attributes = attributes
         self.name = name
+        self._type = self.name
         if "Names" in self.attributes:
             if self.name not in self.attributes["Names"]:
                 self.name = random.choice(self.attributes["Names"])
         self.description = description
-        self._type = self.name
 
     def reset_cooldowns(self):
         for attack in self.attacks:

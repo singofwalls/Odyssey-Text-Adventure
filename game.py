@@ -290,6 +290,7 @@ class GameSave(object):
         self.update_stats_tooltip()
         self.new_location = True
         self.name_nums = {}
+        self.type_nums = {}
         self.uniques = []
 
         self.boosts = []
@@ -711,6 +712,13 @@ class GameSave(object):
                                      color=prompt_color, new_line=True)])
             return False, treasures
 
+    def drop_empty(self, weapon_object, attack_object):
+        self.add_event([Text("Equipped attack is out of ammo.", color=prompt_color,
+                        new_line=True)])
+        weapon_object = attack_object.get_attribute("Weapon")
+        self.remove_inv_item(weapon_object)
+        self.update_surroundings()
+
     def add_inv_item(self, item):
         self.path[0].find_object("Inventory").add_object(item)
         self.path[0].find_object("Inventory").get_objects()[-1].set_actions(
@@ -872,18 +880,14 @@ class GameSave(object):
     def gen_npcs(self, wander=False):
         if not wander:
             self.name_nums = {}
+            self.type_nums = {}
         # Gen NPCs
         location = self.get_path()[0].find_object(
             "Surroundings").get_attribute("location")
         if "Boss" not in location.get_attributes():
-            npc_amounts = {}
-            for npc in self.get_npcs():
-                if npc.get_type() not in npc_amounts:
-                    npc_amounts[npc.get_type()] = 0
-                npc_amounts[npc.get_type()] += 1
             npc_word_list = []
-            for npc in location.gen_objects(location.npcs, wander,
-                                            npc_amounts):
+            npc_amounts = {}
+            for npc in location.gen_objects(location.npcs, wander, self.type_nums):
                 if self.gen_npc(npc):
                     npc = self.get_path()[0].find_object(
                         "Surroundings").get_objects()[-1].get_attribute(
@@ -914,9 +918,9 @@ class GameSave(object):
         if npc.get_type() in self.uniques and new_name:
             return False
         if new_name:
-            npc.gen_name(self.name_nums)
+            npc.gen_name(self.name_nums, self.type_nums)
         else:
-            npc.determine_number(self.name_nums)
+            npc.determine_number(self.name_nums, self.type_nums)
 
         weapon_objects = []
         for _weapon in npc.get_weapons():
@@ -2029,13 +2033,8 @@ def start(_get_input, update_textbox, _set_choices, mark_temporary,
 
                 # Check if attack has cooldown
                 if attack.ammo > 0 and attack.current_ammo < 1:
-                    add_event([Text("Equipped attack is out of ammo.",
-                                    color=prompt_color, new_line=True)])
                     multiattack = False
-                    weapon_object = attack_object.get_attribute(
-                        "Weapon")
-                    game_save.remove_inv_item(weapon_object)
-                    game_save.update_surroundings()
+                    game_save.drop_empty(weapon_object, attack_object)
                 elif attack.current_cooldown > 0:
                     add_event(
                         [Text("Equipped attack is still cooling down.",
@@ -2106,6 +2105,9 @@ def start(_get_input, update_textbox, _set_choices, mark_temporary,
                                 attributes={
                                     "Item": disarmed_weapon,
                                 }, _actions=[GameAction("Pick-up")]))
+                    if attack.ammo > 0 and attack.current_ammo < 1:
+                        multiattack = False
+                        game_save.drop_empty(weapon_object, attack_object)
                     if "Weapon" in attack_object.get_attributes():
 
                         weapon_object = attack_object.get_attribute(
@@ -2497,5 +2499,5 @@ def start(_get_input, update_textbox, _set_choices, mark_temporary,
 
 
 # TODO: Auto switch to same type of weapon if one runs out of ammo
-# TODO: Handle loading game save in which you are dead
-# TODO: Save/load events? Do not remove on out of screen?
+# TODO: Make ambrosia yellow, flowers/rocks green
+# TODO: Max npc count should be total, not current
