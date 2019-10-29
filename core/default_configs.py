@@ -7214,7 +7214,7 @@ game_objects = \
                                 'Max': 1, \n\
                             }, \n\
                         ], \n\
-                    'Attributes': {}, \n\
+                    'Attributes': {'Jumpscare': True}, \n\
                 }, \n\
                 { \n\
                     'Name': 'Forest', \n\
@@ -7458,7 +7458,7 @@ game_objects = \
                                 'Max': 1, \n\
                             }, \n\
                         ], \n\
-                    'Attributes': {}, \n\
+                    'Attributes': {'Jumpscare': True}, \n\
                 }, \n\
                 { \n\
                     'Name': 'Strange-Cavern', \n\
@@ -7480,7 +7480,7 @@ game_objects = \
                                 'Max': 1, \n\
                             }, \n\
                         ], \n\
-                    'Attributes': {}, \n\
+                    'Attributes': {'Jumpscare': True}, \n\
                 }, \n\
                 { \n\
                     'Name': 'Treasure-Hall', \n\
@@ -7500,7 +7500,7 @@ game_objects = \
                                 'Max': 1, \n\
                             }, \n\
                         ], \n\
-                    'Attributes': {}, \n\
+                    'Attributes': {'Jumpscare': True}, \n\
                 }, \n\
                 { \n\
                     'Name': 'Olympus', \n\
