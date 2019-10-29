@@ -1940,7 +1940,6 @@ def start(_get_input, update_textbox, _set_choices, mark_temporary,
                     else:
                         game_save.gen_location()
                     display_location()
-                choosing = False
 
             elif choice == "Wait":
                 multiattack = False
