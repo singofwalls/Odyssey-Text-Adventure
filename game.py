@@ -1073,13 +1073,12 @@ class GameSave(object):
                         weapon = None
                         break  # End multiattack turn because weapon was lost
                 targets = []
-                npc_teams = None
+                npc_teams = []
+                if "Team" in _npc.get_attributes():
+                    npc_teams = _npc.get_attribute("Team")
                 for _target in self.get_npcs():
                     if _target != _npc:
-                        npc_teams = []
                         target_teams = []
-                        if "Team" in _npc.get_attributes():
-                            npc_teams = _npc.get_attribute("Team")
                         if "Team" in _target.get_attributes():
                             target_teams = _target.get_attribute("Team")
                         if "All" in target_teams:
@@ -1097,12 +1096,12 @@ class GameSave(object):
                         else:
                             targets.append(_target)
 
-                your_team = False
-                if not isinstance(npc_teams, type(None)) and "You" in npc_teams:
-                    your_team = True
+                your_team = "You" in npc_teams
                 if not self.check_if_dead() and not your_team:
                     targets.append("You")
                 target = _npc.get_target(targets, self.camo, self.camo_plus)
+
+                # Find target based on chosen target name
                 for _target in targets:
                     if (_target != "You" and _target.get_name() == target) \
                             or target == _target:
@@ -1719,9 +1718,10 @@ def start(_get_input, update_textbox, _set_choices, mark_temporary,
                 game_save.add_main_action(GameAction(
                     file[:-len(extension) - 1]))
 
-            save_file = get_choice("Choose a save file.") + "." + extension
+            save_file = get_choice("Choose a save file.")
             if isinstance(save_file, type(None)):
                 raise SystemExit
+            save_file += "." + extension
 
             game_save.clear_main_actions()
             game_save.show_objects()
@@ -1929,6 +1929,7 @@ def start(_get_input, update_textbox, _set_choices, mark_temporary,
                     add_event([monster.get_word(), Text("caught "),
                                game_save.get_you_word(False, strip=True),
                                Text(".", new_line=True)])
+                    choosing = False
                 else:
                     # Escaped
                     if location.get_name() == "Labyrinth":

@@ -420,6 +420,10 @@ class Attack(object):
                                               color=number_color,
                                               new_line=True)]
 
+            weapon_name = ""
+            if not isinstance(weapon, type(None)):
+                weapon_name = weapon.get_name()
+
             for stat in self.damages:
                 # Add probability description
                 prob_desc = []
@@ -429,7 +433,7 @@ class Attack(object):
                                       Text(str(self.probabilities[stat]),
                                            color=number_color)]
                     else:
-                        raise Exception("Stat " + stat + " needs probability")
+                        raise Exception(f"{weapon_name}, {self.name}: " + stat + " needs probability")
 
                 # Add effectiveness description
                 effect_desc = []
@@ -439,7 +443,7 @@ class Attack(object):
                                         Text(str(self.effectiveness[stat]),
                                              color=number_color)]
                     else:
-                        raise Exception("Stat " + stat + " needs effectiveness")
+                        raise Exception(f"{weapon_name}, {self.name}: " + stat + " needs effectiveness")
 
                 desc += [Text(stat + ": ", color=header_color),
                          Text(str(self.damages[stat]), color=number_color)]
